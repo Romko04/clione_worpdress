@@ -43,8 +43,8 @@
                                 <p>
                                 </p>
                                 <div class="single__button-wrapper">
-                                    <button class="button cart--button">
-                                        В кошик
+                                    <button data-id="" class="button cart--button single__cart-button">
+                                        В кошик <img class="popup--circle" src="<?php echo get_template_directory_uri() . "/assets/img/circle-white.svg"; ?>" alt="product">
                                     </button>
                                 </div>
                                 <div class="single__full-description">
@@ -58,6 +58,7 @@
             <div id="cart" class=" popup--form cart--form">
                 <div class="popup__body">
                     <div class="popup__content">
+						<div class="cart-overlay"></div>
                         <a class="popup__close" href="">
                             <svg class="popup__close-svg" width="36" height="36" viewBox="0 0 36 36" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -67,6 +68,7 @@
                                     fill="#747474" />
                             </svg>
                         </a>
+						
                         <div class="cart__content">
                             <form class="cart__form" action="">
                                 <h3 class="cart__title">Кошик</h3>

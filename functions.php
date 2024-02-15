@@ -202,6 +202,7 @@ function get_product_info_callback() {
                 'description' => $product->get_description(),
                 'main_image' => get_the_post_thumbnail_url($product->get_id(), 'full'), // Отримати URL головного зображення
                 'additional_images' => array(), // Масив для зберігання URL додаткових зображень
+				'product_id' => $product_id,
             );
 
             // Отримання URL додаткових зображень товару
@@ -250,6 +251,7 @@ function add_to_cart_callback() {
             $product_price = $product_data->get_price();
             $product_quantity = $cart_item['quantity'];
             $product_id = $cart_item['product_id'];
+			$cart_item_key = $cart_item['key'];
             $product_permalink = get_permalink($product_id);
             $product_image = get_the_post_thumbnail_url($product_id, 'thumbnail');
 
@@ -291,7 +293,7 @@ function add_to_cart_callback() {
                             </button>
                         </div>
                         <p class="product__total">' . $product_price . '</p>
-                        <button class="product__delete">
+                        <button class="product__delete" data-key="' . $cart_item_key . '">
                             <img src="' . get_template_directory_uri() . '/assets/img/cart/cancel.svg" alt="cancel icon">
                         </button>
                     </div>
@@ -309,3 +311,21 @@ function add_to_cart_callback() {
 }
 
 
+//Видаляємо елемент з корзини
+
+add_action('wp_ajax_remove_from_cart', 'remove_from_cart_callback');
+add_action('wp_ajax_nopriv_remove_from_cart', 'remove_from_cart_callback');
+
+function remove_from_cart_callback() {
+    if (isset($_POST['product_key'])) {
+        $product_key = $_POST['product_key'];
+        
+        // Видалення товару з кошика за його ідентифікатором
+        WC()->cart->remove_cart_item($product_key);
+        // Передача відповіді про успішне видалення товару
+        wp_send_json_success();
+    } else {
+        // Якщо ідентифікатор товару не передано, відправляємо помилку
+        wp_send_json_error('Ідентифікатор товару не передано.');
+    }
+}

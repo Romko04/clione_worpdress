@@ -14,9 +14,11 @@ const shortDescription = singlePopup.querySelector('.popup__content-info > p');
 const fullDescription = singlePopup.querySelector('.single__full-description');
 const mainImage = singlePopup.querySelector('.popup__main-photo img');
 const thumbnailsContainer = singlePopup.querySelector('.popup__thumbnails');
-
 const mainPhoto = document.querySelector('.popup__main-photo img');
 const thumbnails = document.querySelectorAll('.popup__thumbnail img');
+const btnSingle = document.querySelector('.single__cart-button');
+
+
 
 // here, the index maps to the error code returned from getValidationError - see readme
 const errorMap = ["Invalid number", "Invalid country code", "Too short", "Too long", "Invalid number"];
@@ -66,6 +68,20 @@ window.addEventListener('click', (e) => {
         e.target.classList.add('loaded')
         const productId = e.target.getAttribute('data-id');
         addToCart(productId, e.target)
+    }
+    if (e.target.closest('.cart')) {
+        e.preventDefault()
+        openPopup(cartPopup)
+    }
+
+    if (e.target.closest('.product__delete')) {
+        const closeIcon = e.target.closest('.product__delete')
+        const element = e.target.closest('.product__item')
+        e.preventDefault()
+        const productKey = closeIcon.getAttribute('data-key');
+        if (productKey) {
+            removeFromCart(productKey, element)
+        }
     }
 
     if (!e.target.closest('.popup__content') || e.target.closest('.popup__close')) {
@@ -121,6 +137,7 @@ function fillProductInfo(data) {
     productPrice.textContent = '$' + data.price;
     shortDescription.textContent = data.short_description;
     fullDescription.innerHTML = data.description
+    btnSingle.setAttribute('data-id',data.product_id)
     mainImage.setAttribute('src', data.main_image);
 
     // Очистка контейнера з мініатюрами
@@ -197,5 +214,43 @@ function addToCart(productId, btn) {
         })
         .catch(function (error) {
             console.error(error);
+        });
+}
+
+
+
+// Функція для видалення товару з кошика
+function removeFromCart(productkey, productElement) {
+    const cartOverlay = document.querySelector('.cart-overlay');
+    cartOverlay.classList.add('active');
+    fetch('/wp-admin/admin-ajax.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({
+            action: 'remove_from_cart',
+            product_key: productkey,
+        }),
+    })
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error('Network response was not ok.');
+            }
+        })
+        .then(data => {
+            data.success ? productElement.remove() : console.error('Failed to remove product from cart.')
+            // Оновлення списку товарів у кошику на сторінці клієнта
+            // Наприклад, видалення елемента з DOM-дерева
+        })
+        .catch(error => {
+            // Обробка помилки
+            console.error('Error removing product from cart:', error);
+        })
+        .finally(() => {
+            // Приховати плашку недоступності корзини після завершення запиту
+            cartOverlay.classList.remove('active');
         });
 }
