@@ -214,8 +214,43 @@ function get_product_info_callback() {
                 }
             }
 
-            // Відправлення успішної відповіді з даними про товар
-            wp_send_json_success($product_data);
+            // Генерування HTML контенту
+            ob_start();
+            ?>
+            <div class="popup__content--single">
+                <div class="popup__gallery">
+                    <div class="popup__main-photo">
+                        <img src="<?php echo esc_url($product_data['main_image']); ?>" alt="Main Photo">
+                    </div>
+                    <div class="popup__thumbnails">
+                        
+                        <?php foreach ($product_data['additional_images'] as $image_url): ?>
+                            <div class="popup__thumbnail">
+                                <img class="popup__thumbnail" src="<?php echo esc_url($image_url); ?>" alt="Thumbnail">
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+
+                <div class="popup__content-info">
+                    <h4 class="single__title"><?php echo esc_html($product_data['name']); ?></h4>
+                    <span class="price"><?php echo wc_price($product_data['price']); ?></span>
+                    <p><?php echo wp_kses_post($product_data['short_description']); ?></p>
+                    <div class="single__button-wrapper">
+                        <button data-id="<?php echo esc_attr($product_data['product_id']); ?>" class="button cart--button single__cart-button">
+                            В кошик <img class="popup--circle" src="<?php echo get_template_directory_uri() . "/assets/img/circle-white.svg"; ?>" alt="product">
+                        </button>
+                    </div>
+                    <div class="single__full-description">
+                        <?php echo wp_kses_post($product_data['description']); ?>
+                    </div>
+                </div>
+            </div>
+            <?php
+            $html_content = ob_get_clean();
+
+            // Відправлення успішної відповіді з HTML контентом про товар
+            wp_send_json_success(array('html_content' => $html_content));
         } else {
             // Якщо товар з вказаним ID не знайдено
             wp_send_json_error('Товар з вказаним ID не знайдено.');
@@ -225,6 +260,7 @@ function get_product_info_callback() {
         wp_send_json_error('ID товару не передано.');
     }
 }
+
 
 
 
@@ -246,14 +282,17 @@ function add_to_cart_callback() {
         // Отримання вмісту корзини після додавання товару
         $cart_content = '';
         foreach (WC()->cart->get_cart() as $cart_item_key => $cart_item) {
+
+            $totalProducts = WC()->cart->get_total();
             $product_data = $cart_item['data'];
             $product_name = $product_data->get_name();
-            $product_price = $product_data->get_price();
+            $product_price = WC()->cart->get_product_price( $product_data );
             $product_quantity = $cart_item['quantity'];
             $product_id = $cart_item['product_id'];
 			$cart_item_key = $cart_item['key'];
             $product_permalink = get_permalink($product_id);
             $product_image = get_the_post_thumbnail_url($product_id, 'thumbnail');
+            $subtotal = WC()->cart->get_product_subtotal( $product_data, $cart_item['quantity'] );
 
             // Формування HTML-структури для кожного товару в корзині
             $cart_content .= '
@@ -284,15 +323,15 @@ function add_to_cart_callback() {
                             </div>
                         </div>
                         <div class="product__quantity">
-                            <button class="quantity__btn minus">
+                            <button class="quantity__btn minus" data-key="' . $cart_item_key . '">
                                 <img class="svg__minus cart__icon" src="' . get_template_directory_uri() . '/assets/img/cart/minus.svg" alt="plus icon">
                             </button>
                             <input type="text" class="quantity__input" value="' . $product_quantity . '">
-                            <button class="quantity__btn plus">
+                            <button class="quantity__btn plus" data-key="' . $cart_item_key . '">
                                 <img class="svg__plus cart__icon" src="' . get_template_directory_uri() . '/assets/img/cart/plus.svg" alt="minus icon">
                             </button>
                         </div>
-                        <p class="product__total">' . $product_price . '</p>
+                        <p class="product__total">' . $subtotal . '</p>
                         <button class="product__delete" data-key="' . $cart_item_key . '">
                             <img src="' . get_template_directory_uri() . '/assets/img/cart/cancel.svg" alt="cancel icon">
                         </button>
@@ -302,8 +341,14 @@ function add_to_cart_callback() {
         }
 
         // Передача HTML-структури товарів у корзині на фронтенд
-        echo $cart_content;
-		die();
+        $response = array(
+            'success' => true,
+            'cart_content_html' => $cart_content,
+            'totalProducts' => $totalProducts
+        );
+
+        // Відправка відповіді у форматі JSON
+        wp_send_json($response);
     } else {
         // Якщо ID товару не передано, відправляємо помилку
         echo 'ID товару не передано.';
@@ -319,13 +364,72 @@ add_action('wp_ajax_nopriv_remove_from_cart', 'remove_from_cart_callback');
 function remove_from_cart_callback() {
     if (isset($_POST['product_key'])) {
         $product_key = $_POST['product_key'];
-        
+
+        // Отримання кількості товару перед видаленням
+        $cart_item = WC()->cart->get_cart_item($product_key);
+        $quantity = $cart_item['quantity']; // Отримання кількості товару
         // Видалення товару з кошика за його ідентифікатором
         WC()->cart->remove_cart_item($product_key);
-        // Передача відповіді про успішне видалення товару
-        wp_send_json_success();
+        $totalProducts = WC()->cart->get_total();
+
+        $response = array(
+            'success' => true,
+            'quantity' => $quantity,
+            'totalProducts' => $totalProducts
+        );
+
+        // Передача відповіді про успішне видалення товару разом з його кількістю
+        wp_send_json_success($response);
     } else {
         // Якщо ідентифікатор товару не передано, відправляємо помилку
         wp_send_json_error('Ідентифікатор товару не передано.');
     }
 }
+
+
+add_action('wp_ajax_update_cart', 'update_cart_callback');
+add_action('wp_ajax_nopriv_update_cart', 'update_cart_callback'); 
+
+
+
+// Оголошення функції, яка буде обробляти екшен update_cart
+function update_cart_callback() {
+    if (isset($_POST['product_key']) && isset($_POST['quantity_change'])) {
+        $product_key = $_POST['product_key'];
+        $quantity_change = $_POST['quantity_change']; 
+        
+        // Отримання кількості товару перед оновленням
+        $cart_item = WC()->cart->get_cart_item($product_key);
+        $quantity = $cart_item['quantity']; // Отримання кількості товару
+
+        // Оновлення кількості товару в корзині
+        $new_quantity = $quantity + ($quantity_change === 'true' ? 1 : -1);
+        WC()->cart->set_quantity($product_key, $new_quantity);
+
+        // Повторне отримання даних товару після оновлення
+        $cart_item = WC()->cart->get_cart_item($product_key);
+        $product_data = $cart_item['data'];
+        $subtotal = WC()->cart->get_product_subtotal($product_data, $new_quantity);
+
+        // Отримання загальної суми товарів у кошику
+        $totalProducts = WC()->cart->get_total();
+
+        // Повернення успішної відповіді разом із новими даними
+        $response = array(
+            'success' => true,
+            'totalProducts' => $totalProducts,
+            'subTotal' => $subtotal
+        );
+        wp_send_json($response);
+    } else {
+        // Якщо не передано достатньо даних, повертаємо помилку
+        $response = array(
+            'success' => false,
+            'message' => 'Не вказаний ідентифікатор продукту або кількість зміни.'
+        );
+        wp_send_json($response);
+    }
+}
+
+// Додавання дії для обробки екшена update_cart
+// Якщо вам потрібно дозволити неавторизованим користувачам використовувати цей екшен

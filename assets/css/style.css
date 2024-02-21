@@ -488,7 +488,7 @@ body {
     gap: .5rem;
 }
 
-.cart span {
+.cart__count {
     font-family: var(--font-family);
     font-weight: 400;
     font-size: 1.8rem;

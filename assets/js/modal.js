@@ -1,5 +1,9 @@
 const input = document.querySelector("#phone");
 const button = document.querySelector(".button--submit");
+const cartCount = document.querySelector('.cart__count > span')
+const totalProducts = document.querySelector('.cart__form > .count')
+
+const cartOverlay = document.querySelector('.cart-overlay');
 
 // Отримання всіх кнопок з класом '.single--button' і '.cart--button'
 const buttons = document.querySelectorAll('.single--button');
@@ -7,17 +11,7 @@ const buttons = document.querySelectorAll('.single--button');
 const singlePopup = document.querySelector('.popup--single-product');
 const cartPopup = document.querySelector('.cart--form');
 
-
-const productName = singlePopup.querySelector('.single__title');
-const productPrice = singlePopup.querySelector('.price');
-const shortDescription = singlePopup.querySelector('.popup__content-info > p');
-const fullDescription = singlePopup.querySelector('.single__full-description');
-const mainImage = singlePopup.querySelector('.popup__main-photo img');
-const thumbnailsContainer = singlePopup.querySelector('.popup__thumbnails');
-const mainPhoto = document.querySelector('.popup__main-photo img');
-const thumbnails = document.querySelectorAll('.popup__thumbnail img');
-const btnSingle = document.querySelector('.single__cart-button');
-
+const singlePopupContent = document.querySelector('.popup__content--single');
 
 
 // here, the index maps to the error code returned from getValidationError - see readme
@@ -60,37 +54,81 @@ function closePopup(form) {
 // Обробник кліків
 window.addEventListener('click', (e) => {
     if (e.target.closest('.single--button')) {
+        e.preventDefault()
+
         e.target.classList.add('loaded')
         const productId = e.target.getAttribute('data-id');
         getInfoProduct(productId, e.target);
     }
     if (e.target.closest('.cart--button')) {
+        e.preventDefault()
+
         e.target.classList.add('loaded')
         const productId = e.target.getAttribute('data-id');
         addToCart(productId, e.target)
     }
     if (e.target.closest('.cart')) {
         e.preventDefault()
+
         openPopup(cartPopup)
     }
 
     if (e.target.closest('.product__delete')) {
+        e.preventDefault()
+
         const closeIcon = e.target.closest('.product__delete')
         const element = e.target.closest('.product__item')
-        e.preventDefault()
         const productKey = closeIcon.getAttribute('data-key');
         if (productKey) {
             removeFromCart(productKey, element)
         }
     }
+    const plusIcon = e.target.closest('.plus');
+    const minusIcon = e.target.closest('.minus');
+    const productItem = e.target.closest('.product__item');
+    if (plusIcon) {
+        e.preventDefault()
+        let productTotal = productItem.querySelector('.product__total');
+        const element = plusIcon.previousElementSibling;
+        const productKey = plusIcon.getAttribute('data-key');
+        if (productKey) {
+            updateQuantityCartItem(productKey, element, true, productTotal);
+        }
+    }
+
+    if (minusIcon) {
+        e.preventDefault()
+        let productTotal = productItem.querySelector('.product__total');
+        const element = minusIcon.nextElementSibling;
+        const productKey = minusIcon.getAttribute('data-key');
+        if (productKey) {
+            const inputValue = parseInt(element.value);
+            // Перевіряємо, чи значення інпута не дорівнює 1
+            inputValue === 1 ? removeFromCart(productKey, productItem) : updateQuantityCartItem(productKey, element, false, productTotal);
+        }
+    }
+
+
 
     if (!e.target.closest('.popup__content') || e.target.closest('.popup__close')) {
+        e.preventDefault()
         const popup = e.target.closest('.popup--form');
         if (popup) {
-            e.preventDefault();
             closePopup(popup); // Закриття попапу при кліку поза попапом або на кнопці закриття
         }
     }
+    const mainPhoto = document.querySelector('.popup__main-photo img');
+    const thumbnails = document.querySelectorAll('.popup__thumbnail img');
+
+    if (thumbnails.length > 0) {
+        thumbnails.forEach(thumbnail => {
+            if (thumbnail.contains(e.target)) {
+                const thumbnailSrc = thumbnail.getAttribute('src');
+                mainPhoto.setAttribute('src', thumbnailSrc);
+            }
+        });
+    }
+    ;
 });
 
 
@@ -98,70 +136,6 @@ window.addEventListener('click', (e) => {
 
 
 
-// Отримуємо всі елементи .product__quantity
-// const quantityElements = document.querySelectorAll('.product__quantity');
-
-// Додаємо обробник подій для кожного .product__quantity
-// quantityElements.forEach(quantityElement => {
-//     const minusBtn = quantityElement.querySelector('.minus');
-//     const plusBtn = quantityElement.querySelector('.plus');
-//     const input = quantityElement.querySelector('.quantity__input');
-
-//     minusBtn.addEventListener('click', (e) => {
-//         e.preventDefault();
-//         let value = parseInt(input.value);
-//         value = isNaN(value) ? 0 : value;
-//         value = Math.max(value - 1, 0);
-//         input.value = value;
-//         if (value === 0) {
-//             // Якщо кількість стане 0 або від'ємною, видаляємо продукт
-//             deleteProduct(e, quantityElement);
-//         }
-//     });
-
-//     plusBtn.addEventListener('click', (e) => {
-//         e.preventDefault();
-//         let value = parseInt(input.value);
-//         value = isNaN(value) ? 0 : value;
-//         input.value = value + 1;
-//     });
-// });
-
-
-
-
-
-// Функція для заповнення інформацією про товар
-function fillProductInfo(data) {
-    productName.textContent = data.name;
-    productPrice.textContent = '$' + data.price;
-    shortDescription.textContent = data.short_description;
-    fullDescription.innerHTML = data.description
-    btnSingle.setAttribute('data-id',data.product_id)
-    mainImage.setAttribute('src', data.main_image);
-
-    // Очистка контейнера з мініатюрами
-    thumbnailsContainer.innerHTML = '';
-
-    // Заповнення додаткових зображень
-    data.additional_images.forEach(imageUrl => {
-        const thumbnail = document.createElement('div');
-
-        thumbnail.addEventListener('click', function () {
-            const thumbnailSrc = imageUrl;
-            mainPhoto.setAttribute('src', thumbnailSrc);
-        });
-
-        thumbnail.classList.add('popup__thumbnail');
-        const img = document.createElement('img');
-        img.setAttribute('src', imageUrl);
-        thumbnail.appendChild(img);
-        thumbnailsContainer.appendChild(thumbnail);
-    });
-
-    // Додавання класу active
-    openPopup(singlePopup)
-}
 
 
 
@@ -182,7 +156,8 @@ function getInfoProduct(productId, btn) {
         })
         .then(data => {
             btn.classList.remove('loaded')
-            fillProductInfo(data.data);
+            singlePopupContent.innerHTML = data.data.html_content
+            openPopup(singlePopup)
         })
         .catch(error => {
             console.error('Помилка:', error);
@@ -203,12 +178,13 @@ function addToCart(productId, btn) {
             if (!response.ok) {
                 throw new Error('Помилка AJAX-запиту: ' + response.status);
             }
-            return response.text();
+            return response.json();
         })
         .then(function (data) {
             var productsContainer = document.querySelector('.products');
-            // Вставляємо отриманий HTML-код у .products
-            productsContainer.innerHTML = data;
+            updateTotalProducts(data.totalProducts)
+            productsContainer.innerHTML = data.cart_content_html;
+            cartCount.innerHTML = parseInt(cartCount.textContent) + 1;
             btn.classList.remove('loaded')
             openPopup(cartPopup)
         })
@@ -218,10 +194,8 @@ function addToCart(productId, btn) {
 }
 
 
-
 // Функція для видалення товару з кошика
 function removeFromCart(productkey, productElement) {
-    const cartOverlay = document.querySelector('.cart-overlay');
     cartOverlay.classList.add('active');
     fetch('/wp-admin/admin-ajax.php', {
         method: 'POST',
@@ -241,9 +215,11 @@ function removeFromCart(productkey, productElement) {
             }
         })
         .then(data => {
-            data.success ? productElement.remove() : console.error('Failed to remove product from cart.')
-            // Оновлення списку товарів у кошику на сторінці клієнта
-            // Наприклад, видалення елемента з DOM-дерева
+            if (data.success) {
+                updateTotalProducts(data.data.totalProducts)
+                cartCount.innerHTML = parseInt(cartCount.textContent) - data.data.quantity;
+                productElement.remove()
+            }
         })
         .catch(error => {
             // Обробка помилки
@@ -253,4 +229,56 @@ function removeFromCart(productkey, productElement) {
             // Приховати плашку недоступності корзини після завершення запиту
             cartOverlay.classList.remove('active');
         });
+}
+
+
+
+function updateQuantityCartItem(productkey, productElement, quantity, subtotal) {
+    cartOverlay.classList.add('active');
+    const quantityChange = quantity ? 1 : -1;
+    fetch('/wp-admin/admin-ajax.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: new URLSearchParams({
+            action: 'update_cart',
+            product_key: productkey,
+            quantity_change: quantity
+        }),
+    })
+        .then(function (response) {
+            if (!response.ok) {
+                throw new Error('Помилка AJAX-запиту: ' + response.status);
+            }
+            return response.json(); // Змінено метод для парсингу JSON
+        })
+        .then(function (data) {
+            // Перевірка наявності ключа success у відповіді
+            if (data.success) {
+                // Оновлення кількості товарів у корзині
+                updateTotalProducts(data.totalProducts)
+                subtotal.innerHTML = data.subTotal
+                cartCount.innerHTML = parseInt(cartCount.textContent) + quantityChange;
+                productElement.value = parseInt(productElement.value) + quantityChange
+                // Тут можна додати інші дії в разі успішної відповіді, якщо потрібно
+            } else {
+                throw new Error('Помилка оновлення кількості товару в корзині.');
+            }
+        })
+        .catch(function (error) {
+            console.error(error);
+            // Тут можна додати код для обробки помилок
+        }
+        )
+        .finally(() => {
+            // Приховати плашку недоступності корзини після завершення запиту
+            cartOverlay.classList.remove('active');
+        })
+
+}
+
+
+function updateTotalProducts(html) {
+    totalProducts.innerHTML = html
 }

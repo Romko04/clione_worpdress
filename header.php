@@ -20,7 +20,7 @@
 	<?php wp_head(); ?>
 </head>
 
-<body <?php body_class(); ?>>
+<body >
 <?php wp_body_open(); ?>
 <div class="wrapper">
 	<header class="header">
@@ -97,7 +97,12 @@
                 <div class="cart">
                     <a href="">
                         <img src="<?php echo get_template_directory_uri(); ?>/assets/img/icons/card.svg" alt="cartIcon">
-                        <span>кошик (0)</span>
+                        <div class="cart__count">
+                            кошик
+                            (<span><?php global $woocommerce; echo '' . $woocommerce->cart->cart_contents_count . ''; ?></span>)
+                        </div>
+                          
+                        </span>
                     </a>
                 </div>
             </div>

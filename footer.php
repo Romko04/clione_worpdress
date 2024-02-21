@@ -73,11 +73,72 @@
                             <form class="cart__form" action="">
                                 <h3 class="cart__title">Кошик</h3>
                                 <div class="products__wrapper">
-                                    <div class="products">
+                                <div class="products">
+                                    <?php
+                                    foreach (WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
+
+                                        $product = $cart_item['data'];
+                                        $cart_item_key = $cart_item['key'];
+                                        $name = $product->get_name();
+                                        $image_id = $product->get_image_id();
+                                        $image_url = wp_get_attachment_image_url( $image_id, 'full' );
+                                        $price = WC()->cart->get_product_price( $product );
+                                        $subtotal = WC()->cart->get_product_subtotal( $product, $cart_item['quantity'] );
+                                        $quantity = $cart_item['quantity'];
+                                        $product = wc_get_product( $product_id ); // $product_id - ідентифікатор товару
+                                        $totalProducts = WC()->cart->get_total();
+                                        ?>
+                                        <div class="product__item">
+                                            <div class="product__image">
+                                                <a href="">
+                                                    <img src="<?php echo $image_url ?>" alt="product image">
+                                                </a>
+                                            </div>
+                                            <div class="product__info">
+                                                <div class="product__info-left">
+                                                    <h4 class="product__title">
+                                                        <a href="">
+                                                            <?php echo $name?>
+                                                        </a>
+                                                    </h4>
+                                                    <span><?php echo $price?></span>
+                                                    <div class="product__content--mobile">
+                                                        <div class="">
+                                                            <span><?php echo $price?></span>
+                                                            <span>Видалити</span>
+                                                        </div>
+                                                        <div class="product__quantity">
+                                                            <button class="quantity__btn minus" data-key="<?php echo $cart_item_key?>">
+                                                                <img class="svg__minus cart__icon" src="<?php echo get_template_directory_uri(); ?>/assets/img/cart/minus.svg" alt="plus icon">
+                                                            </button>
+                                                            <input type="text" class="quantity__input" value="<?php echo $quantity?>">
+                                                            <button class="quantity__btn plus" data-key="<?php echo $cart_item_key?>">
+                                                                <img class="svg__plus cart__icon" src="<?php echo get_template_directory_uri(); ?>/assets/img/cart/plus.svg" alt="minus icon">
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="product__quantity">
+                                                    <button class="quantity__btn minus" data-key="<?php echo $cart_item_key?>">
+                                                        <img class="svg__minus cart__icon" src="<?php echo get_template_directory_uri(); ?>/assets/img/cart/minus.svg" alt="minus icon">
+                                                    </button>
+                                                    <input type="text" class="quantity__input" value="<?php echo $quantity?>">
+                                                    <button class="quantity__btn plus" data-key="<?php echo $cart_item_key?>">
+                                                        <img class="svg__plus cart__icon" src="<?php echo get_template_directory_uri(); ?>/assets/img/cart/plus.svg" alt="plus icon">
+                                                    </button>
+                                                </div>
+                                                <p class="product__total"><?php echo $subtotal ?></p>
+                                                <button class="product__delete" data-key="<?php echo $cart_item_key?>">
+                                                    <img src="<?php echo get_template_directory_uri()?>/assets/img/cart/cancel.svg" alt="cancel icon">
+                                                </button>
+                                            </div>
+                                        </div>
+                                    <?php } ?>
                                     </div>
+
                                 </div>
                                 <div class="count">
-                                    <span>Сума: 510$</span>
+                                    <span><?php echo $totalProducts?></span>
                                 </div>
                                 <div class="cart__inputs-wrapper">
                                     <div class="input__wrapper">
