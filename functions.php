@@ -296,7 +296,7 @@ function add_to_cart_callback() {
 
             // Формування HTML-структури для кожного товару в корзині
             $cart_content .= '
-                <div class="product__item">
+                <div class="product__item" data-id="' . $product_id . '">
                     <div class="product__image">
                         <img src="' . $product_image . '" alt="product image">
                     </div>

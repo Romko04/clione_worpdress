@@ -298,14 +298,17 @@ function updateCartInputHidden() {
         let productName = item.querySelector('.product__title').textContent.trim();
         let productPrice = item.querySelector('.product__info-left span').textContent.trim();
         let productQuantity = item.querySelector('.quantity__input').value;
-        let productId = item.querySelector('.quantity__btn.plus').getAttribute('data-key'); // assuming the plus button has the product key as data-key attribute
+        let productId = item.getAttribute('data-id'); // assuming the plus button has the product key as data-key attribute
         let productTotal = item.querySelector('.product__total .woocommerce-Price-amount').textContent.trim();
     
-        let cartItemString = `Товар: ${productName}, айді товару: ${productId}, ціна: ${productPrice}, загальна ціна: ${productTotal}, кількість: ${productQuantity}\n`;
+        let cartItemString = `Товар: ${productName}, айді товару: ${productId}, ціна: ${productPrice}, загальна ціна: ${productTotal}, кількість: ${productQuantity}\n\n`;
     
         cartInfoString += cartItemString;
     });
-    
+
+    const check = document.querySelector('.check')
+    let productsTotal = document.querySelector('.count .woocommerce-Price-amount').textContent.trim();
+    check.value = productsTotal
     document.getElementById('cart_info').value = cartInfoString;
 }
 updateCartInputHidden()
