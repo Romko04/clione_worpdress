@@ -1,6 +1,6 @@
 const input = document.querySelector("#phone");
 const button = document.querySelector(".button--submit");
-const cartCount = document.querySelector('.cart__count > span')
+const cartCount = document.querySelectorAll('.cart__count > span')
 const totalProducts = document.querySelector('.cart__form > .count')
 
 const cartOverlay = document.querySelector('.cart-overlay');
@@ -111,7 +111,6 @@ window.addEventListener('click', (e) => {
 
 
     if (!e.target.closest('.popup__content') || e.target.closest('.popup__close')) {
-        e.preventDefault()
         const popup = e.target.closest('.popup--form');
         if (popup) {
             closePopup(popup); // Закриття попапу при кліку поза попапом або на кнопці закриття
@@ -130,10 +129,6 @@ window.addEventListener('click', (e) => {
     }
     ;
 });
-
-
-
-
 
 
 
@@ -184,9 +179,10 @@ function addToCart(productId, btn) {
             var productsContainer = document.querySelector('.products');
             updateTotalProducts(data.totalProducts)
             productsContainer.innerHTML = data.cart_content_html;
-            cartCount.innerHTML = parseInt(cartCount.textContent) + 1;
+            updateCartCount(1)
             btn.classList.remove('loaded')
             openPopup(cartPopup)
+            updateCartInputHidden()
         })
         .catch(function (error) {
             console.error(error);
@@ -217,8 +213,9 @@ function removeFromCart(productkey, productElement) {
         .then(data => {
             if (data.success) {
                 updateTotalProducts(data.data.totalProducts)
-                cartCount.innerHTML = parseInt(cartCount.textContent) - data.data.quantity;
+                updateCartCount(-data.data.quantity)
                 productElement.remove()
+                updateCartInputHidden()
             }
         })
         .catch(error => {
@@ -259,8 +256,9 @@ function updateQuantityCartItem(productkey, productElement, quantity, subtotal) 
                 // Оновлення кількості товарів у корзині
                 updateTotalProducts(data.totalProducts)
                 subtotal.innerHTML = data.subTotal
-                cartCount.innerHTML = parseInt(cartCount.textContent) + quantityChange;
+                updateCartCount(quantityChange)
                 productElement.value = parseInt(productElement.value) + quantityChange
+                updateCartInputHidden()
                 // Тут можна додати інші дії в разі успішної відповіді, якщо потрібно
             } else {
                 throw new Error('Помилка оновлення кількості товару в корзині.');
@@ -282,3 +280,32 @@ function updateQuantityCartItem(productkey, productElement, quantity, subtotal) 
 function updateTotalProducts(html) {
     totalProducts.innerHTML = html
 }
+
+
+function updateCartCount(symbol) {
+    cartCount.forEach(item=>{
+        item.innerHTML = parseInt(item.textContent) + symbol;
+    })
+}
+
+
+
+
+function updateCartInputHidden() {
+    let products = document.querySelectorAll('.product__item');
+    let cartInfoString = '';
+    products.forEach(item => {
+        let productName = item.querySelector('.product__title').textContent.trim();
+        let productPrice = item.querySelector('.product__info-left span').textContent.trim();
+        let productQuantity = item.querySelector('.quantity__input').value;
+        let productId = item.querySelector('.quantity__btn.plus').getAttribute('data-key'); // assuming the plus button has the product key as data-key attribute
+        let productTotal = item.querySelector('.product__total .woocommerce-Price-amount').textContent.trim();
+    
+        let cartItemString = `Товар: ${productName}, айді товару: ${productId}, ціна: ${productPrice}, загальна ціна: ${productTotal}, кількість: ${productQuantity}\n`;
+    
+        cartInfoString += cartItemString;
+    });
+    
+    document.getElementById('cart_info').value = cartInfoString;
+}
+updateCartInputHidden()

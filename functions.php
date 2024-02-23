@@ -49,7 +49,8 @@ function clione_setup() {
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus(
 		array(
-			'menu-1' => esc_html__( 'Primary', 'clione' ),
+			'menu-1' => esc_html__( 'header', 'clione' ),
+			'menu-2' => esc_html__( 'footer', 'clione' ),
 		)
 	);
 
@@ -181,7 +182,6 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 
 
 
-
 add_action('wp_ajax_get_product_info', 'get_product_info_callback');
 add_action('wp_ajax_nopriv_get_product_info', 'get_product_info_callback');
 
@@ -309,14 +309,14 @@ function add_to_cart_callback() {
                             <div class="product__content--mobile">
                                 <div>
                                     <span>' . $product_price . '</span>
-                                    <a href="">Видалити</a>
+                                    <span class="product__delete" data-key="' . $cart_item_key . '">Видалити</span>
                                 </div>
                                 <div class="product__quantity">
-                                    <button class="quantity__btn minus">
+                                    <button class="quantity__btn minus" data-key="' . $cart_item_key . '">
                                         <img class="svg__minus cart__icon" src="' . get_template_directory_uri() . '/assets/img/cart/minus.svg" alt="plus icon">
                                     </button>
                                     <input type="text" class="quantity__input" value="' . $product_quantity . '">
-                                    <button class="quantity__btn plus">
+                                    <button class="quantity__btn plus" data-key="' . $cart_item_key . '">
                                         <img class="svg__plus cart__icon" src="' . get_template_directory_uri() . '/assets/img/cart/plus.svg" alt="minus icon">
                                     </button>
                                 </div>
