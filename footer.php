@@ -108,7 +108,7 @@
                                                             <button class="quantity__btn minus" data-key="<?php echo $cart_item_key?>">
                                                                 <img class="svg__minus cart__icon" src="<?php echo get_template_directory_uri()?>/assets/img/cart/minus.svg" alt="plus icon">
                                                             </button>
-                                                            <input type="text" class="quantity__input" value="2">
+                                                            <input type="text" class="quantity__input" value="<?php echo $quantity?>">
                                                             <button class="quantity__btn plus" data-key="<?php echo $cart_item_key?>" >
                                                                 <img class="svg__plus cart__icon" src="<?php echo get_template_directory_uri()?>/assets/img/cart/plus.svg" alt="minus icon">
                                                             </button>

@@ -301,7 +301,7 @@ function updateCartInputHidden() {
         let productId = item.getAttribute('data-id'); // assuming the plus button has the product key as data-key attribute
         let productTotal = item.querySelector('.product__total .woocommerce-Price-amount').textContent.trim();
     
-        let cartItemString = `Товар: ${productName}, айді товару: ${productId}, ціна: ${productPrice}, загальна ціна: ${productTotal}, кількість: ${productQuantity}\n\n`;
+        let cartItemString = `Товар: *${productName}*, айді товару: ${productId}, ціна: ${productPrice}, загальна ціна: ${productTotal}, кількість: ${productQuantity}\n\n`;
     
         cartInfoString += cartItemString;
     });
