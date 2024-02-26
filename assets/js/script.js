@@ -126,25 +126,46 @@ document.addEventListener('click', (e) => {
         }
     }
     if (isMobileOrTablet) {
-        if (e.target.closest('.menu-item-has-children')) {
+        if (e.target.closest('.menu-item-has-children > a')) {
             e.preventDefault()
-            const item = e.target.closest('.menu-item-has-children')
-            item.classList.toggle('active')
-            let menu = item.querySelector('.sub-menu');
-            if (menu) {
-                if (item.classList.contains('active')) {
-                    menu.style.padding = '2rem 3rem';
-                    menu.style.marginTop = '2rem';
-                    let totalHeight = menu.scrollHeight + 60
-                    menu.style.maxHeight = (totalHeight / 10) + 'rem';
+            e.target.classList.toggle('active');
+            let nextElement = e.target.nextElementSibling;
+            if (nextElement) {
+                if (e.target.classList.contains('active')) {
+                    nextElement.style.padding = '2rem 3rem';
+                    nextElement.style.marginTop = '2rem';
+                    let totalHeight = nextElement.scrollHeight + 60
+                    nextElement.style.maxHeight = (totalHeight / 10) + 'rem';
                 } else {
-                    menu.style.padding = '0';
-                    menu.style.marginTop = '0';
-                    menu.style.maxHeight = '0';
+                    nextElement.style.padding = '0';
+                    nextElement.style.marginTop = '0';
+                    nextElement.style.maxHeight = '0';
                 }
+                nextElement.classList.toggle('active');
             }
         }
     }
+    // if (isMobileOrTablet) {
+    //     if (e.target.closest('.menu-item-has-children > a')) {
+    //         debugger
+    //         e.preventDefault()
+    //         const item = e.target.closest('.menu-item-has-children')
+    //         item.classList.toggle('active')
+    //         let menu = item.querySelector('.sub-menu');
+    //         if (menu) {
+    //             if (item.classList.contains('active')) {
+    //                 menu.style.padding = '2rem 3rem';
+    //                 menu.style.marginTop = '2rem';
+    //                 let totalHeight = menu.scrollHeight + 60
+    //                 menu.style.maxHeight = (totalHeight / 10) + 'rem';
+    //             } else {
+    //                 menu.style.padding = '0';
+    //                 menu.style.marginTop = '0';
+    //                 menu.style.maxHeight = '0';
+    //             }
+    //         }
+    //     }
+    // }
 
 })
 
