@@ -75,3 +75,26 @@
             </div>
         </header>
 		<main class="main">
+            <?php 
+            if (!is_page_template('template-home.php')) {?>
+                <div class="page__top">
+                    <div class="container">
+                        <div class="page__top-content">
+                            <div class="breadcrumbs">
+                                <ul>
+                                    <li><a href="<?php echo home_url()?>">Головна</a></li>
+                                    <li><span><?php echo the_title()?></span></li>
+                                </ul>
+                            </div>
+                            <div class="page--title_wrapper">
+                                <h1 class="title">
+                                    <?php the_title()?>
+                                </h1>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            <?php }
+
+            ?>

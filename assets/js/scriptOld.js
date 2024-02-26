@@ -41,10 +41,10 @@ if (!isMobileOrTablet) {
 }
 
 
-
-// Анімація для горизонтальних бігучих строк
+// Отримуємо всі елементи .ticker-animation
 const tickerItems = document.querySelectorAll('.ticker-animation');
 
+// Функція для оновлення прозорості елементів
 function updateOpacity() {
     tickerItems.forEach((item, index) => {
         const containerRect = item.parentElement.getBoundingClientRect();
@@ -63,34 +63,20 @@ function updateOpacity() {
         item.style.opacity = opacity;
     });
 }
+// Викликаємо функцію оновлення прозорості
 updateOpacity();
 
+// Функція для виклику оновлення прозорості кожного кадру анімації
+function animate() {
+    // Викликаємо оновлення прозорості
+    updateOpacity();
 
-const verticalTextSpans = document.querySelectorAll('.vertical-text > span');
-
-// Викликаємо функцію один раз при завантаженні сторінки, щоб ініціалізувати прозорість
-if (verticalTextSpans) updateOpacityVertical()
-
-// Анімація для вертикальних бігучих строк
-function updateOpacityVertical() {
-
-    verticalTextSpans.forEach((item, index) => {
-        const containerRect = item.parentElement.getBoundingClientRect();
-        const itemRect = item.getBoundingClientRect();
-        const distanceFromTop = itemRect.top - containerRect.top;
-        const containerHeight = containerRect.bottom - containerRect.top;
-
-        // Обчислюємо відсоток прогресу по шляху
-        const progress = 1 - (distanceFromTop / containerHeight);
-
-        // Використовуємо квадратичну функцію для плавної зміни прозорості
-        let opacity = 1 - Math.pow(progress, 2);
-        opacity = Math.max(opacity, 0.1);
-
-        // Задаємо плавний перехід прозорості
-        item.style.opacity = opacity;
-    });
+    // Просимо викликати цю функцію на наступному кадрі анімації
+    requestAnimationFrame(animate);
 }
+
+// Починаємо анімацію
+animate();
 
 
 
@@ -101,30 +87,7 @@ document.addEventListener('click', (e) => {
         e.preventDefault()
         toggleMenu()
     }
-    //new
-    if (e.target.closest('.plamine__about-list__item')) {
-        let wrapper = e.target.closest('.plamine__about-list__item')
-        let accordion = wrapper.querySelector('.plamine__about-list__item-text');
-        wrapper.classList.toggle('active')
-        if (accordion.style.maxHeight) {
-            accordion.style.maxHeight = null;
-        } else {
-            accordion.style.maxHeight = accordion.scrollHeight + 'px';
-        }
-    }
 
-    if (e.target.closest('.accordeon__wrapper')) {
-        let wrapper = e.target.closest('.accordeon__wrapper')
-        let accordion = wrapper.querySelector('.accordion');
-        wrapper.classList.toggle('active');
-
-        let panel = accordion.nextElementSibling;
-        if (panel.style.maxHeight) {
-            panel.style.maxHeight = null;
-        } else {
-            panel.style.maxHeight = panel.scrollHeight + 'px';
-        }
-    }
     if (isMobileOrTablet) {
         if (e.target.closest('.menu-item-has-children')) {
             e.preventDefault()
@@ -145,7 +108,6 @@ document.addEventListener('click', (e) => {
             }
         }
     }
-
 })
 
 
@@ -202,25 +164,29 @@ sliders.forEach((slider) => {
 
 const playButton = document.querySelector('.play-button');
 const video = document.getElementById('my-video');
-
 if (playButton) {
-    playButton.addEventListener('click', function () {
-        playButton.classList.toggle('active');
-        if (video.paused) {
-            video.play();
-        } else {
-            video.pause();
-        }
-    });
+    
+playButton.addEventListener('click', function () {
+    playButton.classList.toggle('active');
+    if (video.paused) {
+        video.play();
+    } else {
+        video.pause();
+    }
+});
 }
-
 if (video) {
     video.addEventListener('play', function () {
         playButton.classList.add('active');
     });
-
+    
     video.addEventListener('pause', function () {
         playButton.classList.remove('active');
     });
 }
 
+
+
+
+
+        
