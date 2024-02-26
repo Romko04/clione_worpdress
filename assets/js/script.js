@@ -128,10 +128,11 @@ document.addEventListener('click', (e) => {
     if (isMobileOrTablet) {
         if (e.target.closest('.menu-item-has-children > a')) {
             e.preventDefault()
-            e.target.classList.toggle('active');
+            const list = e.target.closest('.menu-item-has-children')
+            list.classList.toggle('active');
             let nextElement = e.target.nextElementSibling;
             if (nextElement) {
-                if (e.target.classList.contains('active')) {
+                if (list.classList.contains('active')) {
                     nextElement.style.padding = '2rem 3rem';
                     nextElement.style.marginTop = '2rem';
                     let totalHeight = nextElement.scrollHeight + 60
