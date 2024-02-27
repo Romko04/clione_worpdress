@@ -5,46 +5,15 @@ get_header() ?>
                 <div class="container reviews__container">
                     <div class="swiper reviews__slider">
                         <div class="swiper-wrapper swiper-wrapper--reviews">
-                            <div class="swiper-slide">
-                                <div class="reviews__content">
-                                    <img src="<?php echo get_template_directory_uri() ?>/assets/img/rewievs/review 2.jpg" alt="rewiev">
+                            <?php
+                                $page_review_list = get_field('page_slider-rewievs');
+                                foreach ($page_review_list as $value) {?>
+                                <div class="swiper-slide">
+                                    <div class="reviews__content">
+                                        <img src="<?php echo $value['review']?>" alt="rewiev">
+                                     </div>
                                 </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="reviews__content">
-                                    <img src="<?php echo get_template_directory_uri() ?>/assets/img/rewievs/review3.jpg" alt="rewiev">
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="reviews__content">
-                                    <img src="<?php echo get_template_directory_uri() ?>/assets/img/rewievs/review4.jpg" alt="rewiev">
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="reviews__content">
-                                    <img src="<?php echo get_template_directory_uri() ?>/assets/img/rewievs/review 2.jpg" alt="rewiev">
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="reviews__content">
-                                    <img src="<?php echo get_template_directory_uri() ?>/assets/img/rewievs/review5.jpg" alt="rewiev">
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="reviews__content">
-                                    <img src="<?php echo get_template_directory_uri() ?>/assets/img/rewievs/review5.jpg" alt="rewiev">
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="reviews__content">
-                                    <img src="<?php echo get_template_directory_uri() ?>/assets/img/rewievs/review5.jpg" alt="rewiev">
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="reviews__content">
-                                    <img src="<?php echo get_template_directory_uri() ?>/assets/img/rewievs/review5.jpg" alt="rewiev">
-                                </div>
-                            </div>
+                            <?php } ?>
                         </div>
                     </div>
                     <div class="swiper__buttons reviews__swiper-buttons">

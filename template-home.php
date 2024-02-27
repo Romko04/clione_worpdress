@@ -8,34 +8,27 @@ get_header() ?>
 
                         <div class="hero__content-left">
                             <div class="hero__content-left__photoes">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/hero/photo 1.jpg" alt="product">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/hero/photo 2.jpg" alt="product">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/hero/photo 3.jpg" alt="product">
+                            <?php
+                            $banner_photoes = get_field('banner-photoes');
+                            foreach ($banner_photoes as $key => $value) {
+                                echo '<img src="' . $value . '" alt="product">';
+                            }
+                            ?>
                             </div>
                             <div class="hero__content-left__middle">
                                 <div class="hero__content-left__text">
-                                    <p>
-                                        Ми - офіційний дистриб'ютор ефективних та популярних японських beauty-ґаджетів і
-                                        професійної косметики для догляду
-                                        за шкірою.
-                                    </p>
-                                    <p>
-                                        Ефективність наших пристроїв перевірена кращими українськими лікарями естетичної
-                                        медицини.
-                                    </p>
+                                    <?php the_field('banner-text')?>
                                 </div>
                                 <button class="button">Усі товари</button>
                             </div>
                             <h1 class="title hero__title hero__desktop">
-                                Plamine, goods Fit,
-                                Meta LT - японська якість та результативність
+                                <?php the_field('banner-title')?>
                             </h1>
                         </div>
                         <div class="hero__content-right">
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/hero/photo 4.jpg" alt="product">
+                            <img src="<?php the_field('banner-main-photo')?>" alt="product">
                             <h1 class="title hero__title hero__mobile">
-                                Plamine, goods Fit,
-                                Meta LT - японська якість та результативність
+                                <?php the_field('banner-title')?>
                             </h1>
                         </div>
                     </div>
@@ -77,21 +70,19 @@ get_header() ?>
                     <div class="about__content">
                         <div class="about__content-wrapper">
                             <div class="about__content-left">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/about/photo 1.jpg" alt="product">
+                                <img src="<?php the_field('about-photo1') ?>" alt="product">
                             </div>
                             <div class="about__content-middle">
                                 <div class="about__content-middle__top">
                                     <h3 class="about__content-middle__top-title ">
-                                        5+ років
+                                        <?php the_field('about-years') ?>
                                     </h3>
                                     <p>
-                                        наша компанія займається продажем косметологічного обладнання та професійної
-                                        космецевтики для клінік естетичної
-                                        медицини і салонів краси.
+                                        <?php the_field('about-text2') ?>
                                     </p>
                                     <div class="about__content-middle__bottom">
                                         <div class="about__content-middle__bottom-img">
-                                            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/about/photo 2.jpg" alt="women">
+                                            <img src="<?php the_field('about-photo2') ?>" alt="women">
                                         </div>
                                         <button class="second--button">Більше про нас</button>
                                     </div>
@@ -100,19 +91,16 @@ get_header() ?>
                         </div>
                         <div class="about__content-right">
                             <h3 class="about__content-middle__top-title mobile">
-                                5+ років
+                                <?php the_field('about-years') ?>
                             </h3>
                             <p class="mobile">
-                                наша компанія займається продажем косметологічного обладнання та професійної
-                                космецевтики для клінік естетичної
-                                медицини і салонів краси.
+                                 <?php the_field('about-text2') ?>
                             </p>
                             <div class="about__content-right__img">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/about/photo 3.jpg" alt="women">
+                                <img src="<?php the_field('about-photo3') ?>" alt="women">
                             </div>
                             <p>
-                                Ми маємо повне розуміння, які процедури користуються попитом серед клієнтів салонів
-                                краси та що вони хочуть отримати, відвідуючи косметолога. 
+                                <?php the_field('about-text1') ?>
                             </p>
                             <div class="about__content-right__button-wrapper--mobile mobile">
                                 <button class="second--button">Більше про нас</button>
@@ -122,34 +110,30 @@ get_header() ?>
                     </div>
                 </div>
             </section>
+            
             <section class="goods goods--right">
-                <h2 class="title goods__title">clione fit</h2>
+                <h2 class="title goods__title"><?php the_field('mas-title-main')?></h2>
                 <div class="container">
                     <div class="goods__content">
                         <div class="goods__content-left">
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/clione/photo 1.jpg" alt="product">
+                            <img src="<?php the_field('mas-photo')?>" alt="clione fit">
                         </div>
                         <div class="goods__content-about">
                             <h3 class="goods__content-about__title">
-                                Японський люксовий б’юті-ґаджет для краси шкіри
+                                <?php the_field('mas-title')?>
                             </h3>
                             <span>
-                                Лідер продажу в Японії вже 11 років
+                                <?php the_field('mas-sub-title')?>
                             </span>
                             <p>
-                                goods Fit - це про безкомпромісну японську якість та результативність. Без
-                                перебільшення, зараз goods Fit - один з найпопулярніших портативних гаджетів для догляду
-                                за обличчям в Україні.
+                                <?php the_field('mas-sub-text')?>
                             </p>
                             <ul class="about-specifications__list">
-                                <li>звужує пори</li>
-                                <li>розгладжує зморшки</li>
-                                <li>усуває сліди акне</li>
-                                <li>активує колаген</li>
-                                <li>покращує кровообіг</li>
-                                <li>зменшує носогубні складки</li>
-                                <li>знімає втому</li>
-                                <li>формує чіткий овал обличчя</li>
+                                <?php
+                                $mas_spec_list = get_field('mas-details');
+                                foreach ($mas_spec_list as $value) {?>
+                                    <li><?php echo $value['text']?></li>
+                                <?php } ?>
                             </ul>
                             <div class="goods__content-about__buttons">
                                 <button class="second--button cart--button">Замовити</button>
@@ -159,9 +143,10 @@ get_header() ?>
                     </div>
                 </div>
             </section>
+            
             <section class="metalt--mobile">
                 <h2 class="title metalt__mobile-title">
-                    meta lt
+                    <?php the_field('metalt-home-title')?>
                 </h2>
                 <div class="container metalt--slider__container">
                     <div class="swiper swiper--metalt swiper--pagination">
@@ -169,35 +154,35 @@ get_header() ?>
                             <div class="swiper-slide">
                                 <div class="swiper__metalt-content">
                                     <div class="swiper__metalt-img">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/product/photo.jpg" alt="product">
+                                        <img src="<?php the_field('metalt-home-1-img')?>" alt="product">
                                     </div>
                                 </div>
                             </div>
                             <div class="swiper-slide">
                                 <div class="swiper__metalt-content">
                                     <div class="swiper__metalt-img">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/product/photo.jpg" alt="product">
+                                        <img src="<?php the_field('metalt-home-2-img')?>" alt="product">
                                     </div>
                                 </div>
                             </div>
                             <div class="swiper-slide">
                                 <div class="swiper__metalt-content">
                                     <div class="swiper__metalt-img">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/product/photo.jpg" alt="product">
+                                        <img src="<?php the_field('metalt-home-3-img')?>" alt="product">
                                     </div>
                                 </div>
                             </div>
                             <div class="swiper-slide">
                                 <div class="swiper__metalt-content">
                                     <div class="swiper__metalt-img">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/product/photo.jpg" alt="product">
+                                        <img src="<?php the_field('metalt-home-4-img')?>" alt="product">
                                     </div>
                                 </div>
                             </div>
                             <div class="swiper-slide">
                                 <div class="swiper__metalt-content">
                                     <div class="swiper__metalt-img">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/product/photo.jpg" alt="product">
+                                        <img src="<?php the_field('metalt-home-5-img')?>" alt="product">
                                     </div>
                                 </div>
                             </div>
@@ -208,11 +193,10 @@ get_header() ?>
                 <div class="metalt__mobile-bottom">
                     <div class="container">
                         <h4 class="metalt__mobile-bottom__title">
-                            Пристрій для краси всього тіла
+                            <?php the_field('metalt-home-text1')?>
                         </h4>
                         <p class="metalt__mobile-bottom__text">
-                            Meta LT - новий багатофункціональний пристрій, який завдяки своїй технології, дає результат
-                            інтенсивного підтягування не тільки обличчя, а в цілому - всього тіла.
+                            <?php the_field('metalt-home-text2')?>
                         </p>
                         <div class="metalt__mobile-bottom__buttons">
                             <button class="button cart--button">Замовити</button>
@@ -223,23 +207,20 @@ get_header() ?>
             </section>
             <section class="metalt">
                 <div class="container metalt__container">
-                    <h2 class="title metalt__title">meta lt</h2>
+                    <h2 class="title metalt__title"><?php the_field('metalt-home-title')?></h2>
                     <div class="metalt__grid-wrapper">
                         <div class="metalt__grid-content__left">
                             <div class="metalt__grid-content__left-top">
                                 <div class="metalt__grid-content__left-top__block">
-                                    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/about/photo 1.jpg" alt="product">
+                                    <img src="<?php the_field('metalt-home-1-img')?>" alt="product">
                                 </div>
                                 <div
                                     class="metalt__grid-content__left-top__block metalt__grid-content__left-top__block--text">
                                     <span>
-                                        Пристрій для краси всього тіла
+                                    <?php the_field('metalt-home-text1')?>
                                     </span>
                                     <p>
-                                        Meta LT - новий багатофункціональний пристрій, який завдяки своїй технології,
-                                        дає результат
-                                        інтенсивного
-                                        підтягування не тільки обличчя, а в цілому - всього тіла.
+                                        <?php the_field('metalt-home-text2')?>
                                     </p>
                                     <div class="metalt__btn-wrapper">
                                         <button class="button metalt__btn  cart--button">Замовити</button>
@@ -248,10 +229,10 @@ get_header() ?>
                             </div>
                             <div class="metalt__grid-content__left-bottom">
                                 <div class="metalt__grid-content__left-bottom__block">
-                                    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/about/photo 2.jpg" alt="product">
+                                    <img src="<?php the_field('metalt-home-1-img')?>" alt="product">
                                 </div>
                                 <div class="metalt__grid-content__left-bottom__block">
-                                    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/about/photo 3.jpg" alt="product">
+                                    <img src="<?php the_field('metalt-home-2-img')?>" alt="product">
                                 </div>
                             </div>
                         </div>
@@ -259,20 +240,20 @@ get_header() ?>
                             <div class="metalt__grid-content__right-left">
                                 <div class="metalt__grid-content__right-left">
                                     <div class="metalt__grid-content__right-left-top">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/clione/photo 1.jpg" alt="product">
+                                        <img src="<?php the_field('metalt-home-3-img')?>" alt="product">
                                     </div>
                                     <div class="metalt__grid-content__right-left-bottom">
                                         <div class="metalt__grid-content__right-button__wrapper">
                                             <button class="second--button single--button">Детальніше</button>
                                         </div>
                                         <div class="metalt__grid-content__right-left-bottom__img">
-                                            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/clione/photo 1.jpg" alt="product">
+                                            <img src="<?php the_field('metalt-home-4-img')?>" alt="product">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="metalt__grid-content__right-right">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/about/photo 3.jpg" alt="product">
+                                <img src="<?php the_field('metalt-home-5-img')?>" alt="product">
                             </div>
                         </div>
                     </div>
@@ -500,29 +481,28 @@ get_header() ?>
                 </div>
             </section>
             <section class="goods">
-                <h2 class="title goods__title">косметика PLAMINE</h2>
+                <h2 class="title goods__title"><?php the_field('plam-title-main')?></h2>
                 <div class="container">
                     <div class="goods__content goods__content--left">
                         <div class="goods__content-left">
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/plamine/photo 1.jpg" alt="product">
+                            <img src="<?php the_field('plam-photo')?>" alt="clione fit">
                         </div>
                         <div class="goods__content-about">
                             <h3 class="goods__content-about__title">
-                                plamine = Plant + Mineral (Рослини + Мінерали)
+                                <?php the_field('plam-title')?>
                             </h3>
                             <span>
-                                Відновлює шкіру від кореня
+                                <?php the_field('plam-sub-title')?>
                             </span>
                             <p>
-                                Бренд Plamine представлений в Україні 4 роки. Він пропагує ідеальне поєднання рослин,
-                                японських мінералів і технологій для відновлення здоровоı̈ та красивоı̈ шкіри за
-                                допомогою сили природи та чистоı̈ енергіı̈.
+                                <?php the_field('plam-sub-text')?>
                             </p>
                             <ul class="about-specifications__list">
-                                <li>звужує пори</li>
-                                <li>підвищує еластичність</li>
-                                <li>зменшує зморшки</li>
-                                <li>зволожує шкіру</li>
+                                <?php
+                                $plam_spec_list = get_field('plam-details');
+                                foreach ($plam_spec_list as $value) {?>
+                                    <li><?php echo $value['text']?></li>
+                                <?php } ?>
                             </ul>
                             <div class="goods__content-about__buttons">
                                 <button class="second--button cart--button">Замовити</button>
@@ -703,6 +683,7 @@ get_header() ?>
                     <div class="swiper-pagination swiper-pagination--instagram swiper-pagination--custom"></div>
                 </div>
             </section>
+
 
 <?php 
 get_footer() ?>

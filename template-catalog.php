@@ -5,7 +5,7 @@ get_header() ?>
                 <div class="container goods__container">
                     <div class="goods__content">
                         <div class="goods__content-left">
-                            <img src="<?php echo get_template_directory_uri() ?>/assets/img/catalog/photo1.jpg" alt="product">
+                            <img src="<?php the_field('photo-catalog-cl') ?>" alt="product">
                         </div>
                         <div class="vertical-text">
                             <span>clione fit</span>
@@ -50,23 +50,22 @@ get_header() ?>
                         </div>
                         <div class="goods__content-about">
                             <h3 class="goods__content-about__title">
-                                clione fit
+                                <?php the_field('catalog-cl-title') ?>
                             </h3>
                             <span>
-                                Відновлює шкіру від кореня
+                                <?php the_field('catalog-cl-subsubtitle') ?>
                             </span>
                             <p>
-                                Clione Fit - це про безкомпромісну японську якість та результативність. Без перебільшення, зараз Clione Fit - один з найпопулярніших портативних гаджетів для догляду за обличчям в Україні.
+                                <?php the_field('catalog-cl-subsubtitle') ?>
                             </p>
                             <ul class="about-specifications__list">
-                                <li>звужує пори</li>
-                                <li>розгладжує зморшки</li>
-                                <li>усуває сліди акне</li>
-                                <li>активує колаген</li>
-                                <li>покращує кровообіг</li>
-                                <li>зменшує носогубні складки</li>
-                                <li>знімає втому</li>
-                                <li>формує чіткий овал обличчя</li>
+                            <?php
+                                $specifications_list = get_field('details-catalog-clione');
+                                foreach ($specifications_list as $value) {?>
+                                <div class="swiper-slide">
+                                    <li><?php echo $value['text'] ?></li>
+                                </div>
+                            <?php } ?>
                             </ul>
                             <div class="goods__content-about__buttons">
                                 <button class="second--button single--button">Детальніше</button>
