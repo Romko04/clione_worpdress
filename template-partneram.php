@@ -182,15 +182,15 @@ get_header() ?>
                         <div class="cooperation__content">
                             <div class="cooperation__content-left">
                                 <h4>
-                                    Краса в Партнерствах
+                                    <?php the_field('partn_title')?>
                                 </h4>
                                 <p class="text">
-                                    Партнерами нашої компанії є відомі клініки естетичної медицини, салони краси, приватні косметологи та онлайн платформи з підбору домашнього догляду.
+                                    <?php the_field('partn_text1')?>
                                 </p>
                             </div>
                             <div class="cooperation__content-right">
                                 <p class="text">
-                                    Зважаючи на результативність та любов до бренду Plamine, і в особливості - Clione Fit, ми вирішили розширити асортимент та додати новий багатофункціональний апарат - Meta LT. Пристрій, який завдяки своїй технології дає результат інтенсивного підтягування обличчя.
+                                    <?php the_field('partn_text2')?>
                                 </p>
                             </div>
                                 
@@ -198,56 +198,15 @@ get_header() ?>
                 </div>
                     <div class="swiper swiper--cooperation">
                         <div class="swiper-wrapper swiper-wrapper--cooperation">
-                            <div class="swiper-slide">
-                                <div class="cooperation__content">
-                                    <img src="<?php echo get_template_directory_uri() ?>/assets/img/partners/partners1.jpg" alt="rewiev">
+                        <?php
+                                $logoes_list = get_field('logoes_list');
+                                foreach ($logoes_list as $value) {?>
+                                <div class="swiper-slide">
+                                    <div class="cooperation__content">
+                                        <img src="<?php echo $value['logo']?>" alt="rewiev">
+                                     </div>
                                 </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="cooperation__content">
-                                    <img src="<?php echo get_template_directory_uri() ?>/assets/img/partners/partners2.png" alt="rewiev">
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="cooperation__content">
-                                    <img src="<?php echo get_template_directory_uri() ?>/assets/img/partners/partners3.png" alt="rewiev">
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="cooperation__content">
-                                    <img src="<?php echo get_template_directory_uri() ?>/assets/img/partners/partners4.png" alt="rewiev">
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="cooperation__content">
-                                    <img src="<?php echo get_template_directory_uri() ?>/assets/img/partners/partners5.png" alt="rewiev">
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="cooperation__content">
-                                    <img src="<?php echo get_template_directory_uri() ?>/assets/img/partners/partners6.png" alt="rewiev">
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="cooperation__content">
-                                    <img src="<?php echo get_template_directory_uri() ?>/assets/img/partners/partners1.jpg" alt="rewiev">
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="cooperation__content">
-                                    <img src="<?php echo get_template_directory_uri() ?>/assets/img/partners/partners1.jpg" alt="rewiev">
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="cooperation__content">
-                                    <img src="<?php echo get_template_directory_uri() ?>/assets/img/partners/partners1.jpg" alt="rewiev">
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="cooperation__content">
-                                    <img src="<?php echo get_template_directory_uri() ?>/assets/img/partners/partners1.jpg" alt="rewiev">
-                                </div>
-                            </div>
+                            <?php } ?>
                         </div>
                     </div>
                     <div class="swiper__buttons cooperation__swiper-buttons">
@@ -261,36 +220,15 @@ get_header() ?>
                 <div class="container partners__container">
                     <div class="swiper partners__slider">
                         <div class="swiper-wrapper swiper-wrapper--partners">
-                            <div class="swiper-slide">
-                                <div class="partners__content">
-                                    <img src="<?php echo get_template_directory_uri() ?>/assets/img/partners/review1.jpg" alt="rewiev">
+                            <?php
+                                $partners_list = get_field('reviews_list-partn');
+                                foreach ($partners_list as $value) {?>
+                                <div class="swiper-slide">
+                                    <div class="partners__content">
+                                        <img src="<?php echo $value['review']?>" alt="rewiev">
+                                     </div>
                                 </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="partners__content">
-                                    <img src="<?php echo get_template_directory_uri() ?>/assets/img/partners/review2.jpg" alt="rewiev">
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="partners__content">
-                                    <img src="<?php echo get_template_directory_uri() ?>/assets/img/partners/review3.jpg" alt="rewiev">
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="partners__content">
-                                    <img src="<?php echo get_template_directory_uri() ?>/assets/img/partners/review4.jpg" alt="rewiev">
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="partners__content">
-                                    <img src="<?php echo get_template_directory_uri() ?>/assets/img/partners/review4.jpg" alt="rewiev">
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="partners__content">
-                                    <img src="<?php echo get_template_directory_uri() ?>/assets/img/partners/review4.jpg" alt="rewiev">
-                                </div>
-                            </div>
+                            <?php } ?>
                         </div>
                     </div>
                         <div class="swiper__buttons partners__swiper-buttons">

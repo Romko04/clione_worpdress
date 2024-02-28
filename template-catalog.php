@@ -52,9 +52,16 @@ get_header() ?>
                             <h3 class="goods__content-about__title">
                                 <?php the_field('catalog-cl-title') ?>
                             </h3>
-                            <span>
-                                <?php the_field('catalog-cl-subsubtitle') ?>
-                            </span>
+                            <?php $catalog_subsubtitle =  get_field('catalog-cl-subtitle');
+                            
+                            if ($catalog_subsubtitle) { ?>
+                                <span>
+                                    <?php echo $catalog_subsubtitle?>
+                                </span>
+                            <?php  }
+                            
+                            ?>
+
                             <p>
                                 <?php the_field('catalog-cl-subsubtitle') ?>
                             </p>
@@ -62,9 +69,7 @@ get_header() ?>
                             <?php
                                 $specifications_list = get_field('details-catalog-clione');
                                 foreach ($specifications_list as $value) {?>
-                                <div class="swiper-slide">
                                     <li><?php echo $value['text'] ?></li>
-                                </div>
                             <?php } ?>
                             </ul>
                             <div class="goods__content-about__buttons">
@@ -79,7 +84,7 @@ get_header() ?>
                 <div class="container goods__container">
                     <div class="goods__content goods__content--left">
                         <div class="goods__content-left">
-                            <img src="<?php echo get_template_directory_uri() ?>/assets/img/catalog/photo2.jpg" alt="product">
+                            <img src="<?php the_field('photo-catalog-mt') ?>" alt="product">
                         </div>
                         <div class="vertical-text">
                             <span>Meta LT</span>
@@ -124,18 +129,26 @@ get_header() ?>
                         </div>
                         <div class="goods__content-about">
                             <h3 class="goods__content-about__title">
-                                Meta LT
+                                <?php the_field('catalog-mt-title') ?>
                             </h3>
+                            <?php $catalog_subsubtitle_mt =  get_field('catalog-mt-subtitle');
+                            
+                            if ($catalog_subsubtitle_mt) { ?>
+                                <span>
+                                    <?php echo $catalog_subsubtitle_mt?>
+                                </span>
+                            <?php  }
+                            
+                            ?>
                             <p>
-                                Meta LT - новий багатофункціональний пристрій, який завдяки своїй технології, дає результат інтенсивного підтягування не тільки обличчя, а в цілому - всього тіла. 
+                                <?php the_field('catalog-mt-subsubtitle') ?>
                             </p>
                             <ul class="about-specifications__list">
-                                <li>підтягує шкіру</li>
-                                <li>звужує пори/чорні цятки</li>
-                                <li>зменшує рубці</li>
-                                <li>стимулює метаболізм</li>
-                                <li>зменшує зморшки</li>
-                                <li>зменшує носогубні складки</li>
+                                <?php
+                                $specifications_list_mt = get_field('details-catalog-metalt');
+                                foreach ($specifications_list_mt as $value) {?>
+                                    <li><?php echo $value['text'] ?></li>
+                            <?php } ?>
                             </ul>
                             <div class="goods__content-about__buttons">
                                 <button class="second--button single--button">Детальніше</button>
@@ -149,7 +162,7 @@ get_header() ?>
                 <div class="container goods__container">
                     <div class="goods__content">
                         <div class="goods__content-left">
-                            <img src="<?php echo get_template_directory_uri() ?>/assets/img/plamine/photo 1.jpg" alt="product">
+                            <img src="<?php the_field('photo-catalog-pl') ?>" alt="product">
                         </div>
                         <div class="vertical-text">
                             <span>PLAMINE</span>
@@ -191,16 +204,26 @@ get_header() ?>
                         </div>
                         <div class="goods__content-about">
                             <h3 class="goods__content-about__title">
-                                PLAMINE
+                                <?php the_field('catalog-pl-title') ?>
                             </h3>
+                            <?php $catalog_subsubtitle_pl =  get_field('catalog-pl-subtitle');
+                            
+                            if ($catalog_subsubtitle_pl) { ?>
+                                <span>
+                                    <?php echo $catalog_subsubtitle_pl?>
+                                </span>
+                            <?php  }
+                            
+                            ?>
                             <p>
-                                Бренд Plamine представлений в Україні 4 роки. ВІн пропагує ідеальне поєднання рослин, японських мінералів і технологій для відновлення здоровоı̈ та красивоı̈ шкіри за допомогою сили природи та чистоı̈ енергіı̈.
+                                <?php the_field('catalog-mt-subsubtitle') ?>
                             </p>
                             <ul class="about-specifications__list">
-                                <li>звужує пори</li>
-                                <li>підвищує еластичність</li>
-                                <li>зменшує зморшки</li>
-                                <li>зволожує шкіру</li>
+                            <?php
+                                $specifications_list_pls = get_field('details-catalog-plamine');
+                                foreach ($specifications_list_pls as $value) {?>
+                                    <li><?php echo $value['text'] ?></li>
+                            <?php } ?>
                             </ul>
                             <div class="goods__content-about__buttons">
                                 <button class="second--button single--button">Детальніше</button>

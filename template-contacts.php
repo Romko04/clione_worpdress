@@ -5,9 +5,9 @@ get_header() ?>
                 <div class="container">
                     <div class="contacts__content">
                         <div class="contacts__content-left">
-                            <h2 class="title contacts__content-left__title">МИ ЗАВЖДИ НА ЗВ'ЯЗКУ!</h2>
+                            <h2 class="title contacts__content-left__title"><?php the_field('cont_title') ?></h2>
                             <p class="text">
-                                Зв'язатися з нами ви завжди можете за телефонами, вказаними на сторінці контакти.Також ви можете ознайомитися з нашими соц мережами.
+                                <?php the_field('Text') ?>
                             </p>
                             <div class="contacts__block">
                                 <div class="contacts__block-info">
@@ -30,10 +30,7 @@ get_header() ?>
                             </div>
                         </div>
                         <div class="contacts__content-right">
-                            <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d325519.58903276373!2d30.202363277366285!3d50.40156782738347!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d4cf4ee15a4505%3A0x764931d2170146fe!2z0JrQuNGX0LIsINCj0LrRgNCw0ZfQvdCwLCAwMjAwMA!5e0!3m2!1suk!2sru!4v1708264695964!5m2!1suk!2sru"
-                                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
-                                referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            <?php the_field('cart_screan')?>
                         </div>
                     </div>
                 </div>
@@ -72,56 +69,36 @@ get_header() ?>
                 </div>
                 <div class="container">
                     <ul class="delivery__list">
-                        <li class="delivery__list-item delivery__list-item--1">
-                            <img src="<?php echo get_template_directory_uri() ?>/assets/img/icons/delivery1.svg" alt="">
-                            <span>Доставка по Києву Безкоштовно</span>
-                        </li>
-                        <li class="delivery__list-item delivery__list-item--2">
-                            <img src="<?php echo get_template_directory_uri() ?>/assets/img/icons/delivery2.svg" alt="">
-                            <span>За тарифами перевізника</span>
-                        </li>
-                        <li class="delivery__list-item delivery__list-item--3">
-                            <img src="<?php echo get_template_directory_uri() ?>/assets/img/icons/delivery3.svg" alt="">
-                            <span>За тарифами перевізника</span>
-                        </li>
-                        <li class="delivery__list-item delivery__list-item--4">
-                            <img src="<?php echo get_template_directory_uri() ?>/assets/img/icons/delivery4.svg" alt="">
-                            <span>Самовивіз За домовленістю</span>
-                        </li>
-
+                    <?php
+                        $delivery_list = get_field('methods_delivery');
+                        $delivery_counter = 1;
+                        if ($delivery_list) {
+                        foreach ($delivery_list as $value) {
+                            ?>
+                             <li class="delivery__list-item delivery__list-item--<?php echo $delivery_counter?>">
+                                <img src="<?php echo $value['icon']?>" alt="">
+                                <span><?php echo $value['method']?></span>
+                             </li>
+                            <?php
+                            $delivery_counter++;
+                        } }
+                        ?>
                     </ul>
                     <div class="swiper delivery__slider--mobile">
                         <div class="swiper-wrapper swiper-wrapper--delivery">
-                            <div class="swiper-slide">
-                                <div class="delivery__content">
-                                    <img src="<?php echo get_template_directory_uri() ?>/assets/img/icons/delivery1.svg" alt="delivery method">
-                                    <span>Доставка по Києву Безкоштовно</span>
+                        <?php
+                            if ($delivery_list) {
+                            foreach ($delivery_list as $value) {
+                                ?>
+                                <div class="swiper-slide">
+                                    <div class="delivery__content">
+                                    <img src="<?php echo $value['icon']?>" alt="icon">
+                                    <span><?php echo $value['method']?></span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="delivery__content">
-                                    <img src="<?php echo get_template_directory_uri() ?>/assets/img/icons/delivery1.svg" alt="delivery method">
-                                    <span>Доставка по Києву Безкоштовно</span>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="delivery__content">
-                                    <img src="<?php echo get_template_directory_uri() ?>/assets/img/icons/delivery1.svg" alt="delivery method">
-                                    <span>Доставка по Києву Безкоштовно</span>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="delivery__content">
-                                    <img src="<?php echo get_template_directory_uri() ?>/assets/img/icons/delivery1.svg" alt="delivery method">
-                                    <span>Доставка по Києву Безкоштовно</span>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="delivery__content">
-                                    <img src="<?php echo get_template_directory_uri() ?>/assets/img/icons/delivery1.svg" alt="delivery method">
-                                    <span>Доставка по Києву Безкоштовно</span>
-                                </div>
-                            </div>
+                                <?php
+                            } }
+                            ?>
                         </div>
                     </div>
                     <div class="swiper-pagination swiper-pagination--delivery swiper-pagination--custom"></div>
@@ -162,52 +139,36 @@ get_header() ?>
                 </div>
                 <div class="container">
                     <ul class="payment__list">
-                        <li class="payment__list-item payment__list-item-1">
-                            <img src="<?php echo get_template_directory_uri() ?>/assets/img/icons/wallet icon.png" alt="payment icon">
-                            <span>Готівковий розрахунок</span>
-                        </li>
-                        <li class="payment__list-item ">
-                            <img src="<?php echo get_template_directory_uri() ?>/assets/img/icons/pay2.svg" alt="payment icon">
-                            <span>Безготівковий розрахунок</span>
-                        </li>
-                        <li class="payment__list-item ">
-                            <img src="<?php echo get_template_directory_uri() ?>/assets/img/icons/pay3.svg" alt="payment icon">
-                            <span>Оплата частинами</span>
-                        </li>
+                        <?php
+                        $payment_list = get_field('methods_payment');
+                        $payment_counter = 1;
+                        if ($payment_list) {
+                        foreach ($payment_list as $value) {
+                            ?>
+                            <li class="payment__list-item payment__list-item-<?php echo $payment_counter?>">
+                                <img src="<?php echo $value['icon']?>" alt="icon">
+                                <span><?php echo $value['method']?></span>
+                            </li>
+                            <?php
+                            $payment_counter++;
+                        } }
+                        ?>
                     </ul>
                     <div class="swiper payment__slider--mobile">
                         <div class="swiper-wrapper swiper-wrapper--payment">
+                        <?php
+                        if ($payment_list) {
+                        foreach ($payment_list as $value) {
+                            ?>
                             <div class="swiper-slide">
                                 <div class="payment__content">
-                                    <img src="<?php echo get_template_directory_uri() ?>/assets/img/icons/wallet icon.png" alt="payment icon">
-                                    <span>Готівковий розрахунок</span>
+                                <img src="<?php echo $value['icon']?>" alt="icon">
+                                <span><?php echo $value['method']?></span>
                                 </div>
                             </div>
-                            <div class="swiper-slide">
-                                <div class="payment__content">
-                                    <img src="<?php echo get_template_directory_uri() ?>/assets/img/icons/wallet icon.png" alt="payment icon">
-                                    <span>Готівковий розрахунок</span>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="payment__content">
-                                    <img src="<?php echo get_template_directory_uri() ?>/assets/img/icons/wallet icon.png" alt="payment icon">
-                                    <span>Готівковий розрахунок</span>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="payment__content">
-                                    <img src="<?php echo get_template_directory_uri() ?>/assets/img/icons/wallet icon.png" alt="payment icon">
-                                    <span>Готівковий розрахунок</span>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="payment__content">
-                                    <img src="<?php echo get_template_directory_uri() ?>/assets/img/icons/wallet icon.png" alt="payment icon">
-                                    <span>Готівковий розрахунок</span>
-                                </div>
-                            </div>
-                            
+                            <?php
+                        } }
+                        ?>
                         </div>
                     </div>
                     <div class="swiper-pagination swiper-pagination--payment swiper-pagination--custom"></div>
