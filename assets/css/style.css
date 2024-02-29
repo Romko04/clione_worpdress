@@ -2773,10 +2773,12 @@ display: none;
     display: flex;
     margin-top: 4rem;
     gap: 2rem;
+    height: 71.4rem;
 }
 
 .advantages__metalt-bottom img {
     width: 90rem;
+    border-radius: 2rem;
 }
 
 
@@ -3720,6 +3722,9 @@ display: none;
     border-radius: 2rem;
     border: 0.1rem solid var(--default-black);
     counter-increment: advitem;
+}
+.advantages__list-item .text{
+    margin-bottom: auto;
 }
 
 .advantages__list-item--1 {

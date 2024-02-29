@@ -6,55 +6,26 @@ get_header() ?>
                     <ul class="plamine__about-list">
                         <li class="plamine__about-list__item plamine__about-list__item--img">
                             <div class="plamine__about-img__wrapper">
-                                <img src="<?php echo get_template_directory_uri() ?>/assets/img/plamine/photo2.jpg" alt="plamine photo">
+                                <img src="<?php the_field('plamine_top-img') ?>" alt="plamine photo">
                             </div>
                         </li>
-                        <li class="plamine__about-list__item">
-                            <h3 class="plamine__about-list__item-title title">ІСТОРІЯ БРЕНДУ</h3>
-                            <div class="plamine__about-list__item-text">
-                                <span class="plamine__about-list__item-subtitle">
-                                    Plamine — бренд японської компанії Hanbrer Co.,
-                                    Ltd., який був заснований в 2014 році в Токіо,
-                                    Японія.
-                                </span>
-                                <p class="text">
-                                    Початковий бізнес-напрям компанії полягав в тому, що виступав в якості агента для продуктів
-                                    японських косметичних компаній, таких як ARTISTIC&CO (Zeus Company), Rhythm Co., Ltd. і Esthe
-                                     prolabo Co.Jtd. Раніше вони діяли як ексклюзивний дистриб’ютор деяких із зазначених вище
-                                    компаній для розширення бізнесу на закордонних ринках. Після цього вони створили власний
-                                    бренд Plamine для інтеграції ресурсів.
-                                </p>
-                            </div>
-                        </li>
-                        <li class="plamine__about-list__item">
-                            <h3 class="plamine__about-list__item-title title">Команда бренду</h3>
-                            <div class="plamine__about-list__item-text">
-                                <span class="plamine__about-list__item-subtitle">
-                                    Plamine — бренд японської компанії Hanbrer Co.,
-                                    Ltd., який був заснований в 2014 році в Токіо,
-                                    Японія.
-                                </span>
-                                <p class="text">
-                                    Постійно обмінюються найновішою інформацією з консультантами, кваліфікованими фармацевтами та активно інвестують у
-                                    передові технології і матеріали зі сферимедицини та фармакології. У команді бренду з розробки продуктів є багато
-                                    фармацевтів, які пройшли 1-й клас тесту цієї косметики. Крім того, компанія також найняла 2 лікарів-консультантів,
-                                    які займаються розробкою нових продуктів<br><br>
-                                    Компанія розробила серію люксової косметики Plamine спільно з японською 50-річною компанією, яка займається
-                                    дослідженнями та розробкою косметики. Plamine - бренд, який підтримує природну красу, пробуджуючи в людях вроджену
-                                    силу краси. Продукти розроблені на основі різних проблем шкіри, щоб досягти найкращого комплексного догляду.
-                                </p>
-                            </div>
-                        </li>
-                        <li class="plamine__about-list__item">
-                            <h3 class="plamine__about-list__item-title title">КОНСУЛЬТАНТИ З ПРОДУКЦІЇ</h3>
-                            <div class="plamine__about-list__item-text">
-                                <p class="text">
-                                    У процесі розробки продукту ми не лише маємо підтримку вищезазначеної сильної команди
-                                    дослідників і розробників, а й наших власних фармацевтів-консультантів і лікарів. Сировина,
-                                   яку ми використовуємо при розробці продукту, повинна мати достатні наукові докази.
-                                </p> 
-                            </div>
-                        </li>
+                        <?php
+                        $acc_list = get_field('plamine_accordeon');
+                        foreach ($acc_list as $value) {?>
+                            <li class="plamine__about-list__item">
+                                <h3 class="plamine__about-list__item-title title"><?php echo $value['title']?></h3>
+                                <div class="plamine__about-list__item-text">
+                                    <?php if(isset($value['sub'])): ?>
+                                        <span class="plamine__about-list__item-subtitle">
+                                            <?php echo $value['sub']?>
+                                        </span>
+                                    <?php endif; ?>
+                                    <div class="text">
+                                        <?php echo $value['text']?>
+                                    </div>
+                                </div>
+                            </li>
+                        <?php } ?>
                     </ul>
                 </div>
             </section>
@@ -62,30 +33,30 @@ get_header() ?>
                 <div class="ticker">
                     <div class="ticker__wrapper">
                         <div class="ticker-animation">
-                            <h6>instagram</h6>
+                            <h6>PlAMINE</h6>
                         </div>
                         <div class="ticker-animation">
-                            <h6>instagram</h6>
+                            <h6>PlAMINE</h6>
                         </div>
                         <div class="ticker-animation">
-                            <h6>instagram</h6>
+                            <h6>PlAMINE</h6>
                         </div><div class="ticker-animation">
-                            <h6>instagram</h6>
+                            <h6>PlAMINE</h6>
                         </div>
                         <div class="ticker-animation">
-                            <h6>instagram</h6>
+                            <h6>PlAMINE</h6>
                         </div>
                         <div class="ticker-animation">
-                            <h6>instagram</h6>
+                            <h6>PlAMINE</h6>
                         </div>
                         <div class="ticker-animation">
-                            <h6>instagram</h6>
+                            <h6>PlAMINE</h6>
                         </div>
                         <div class="ticker-animation">
-                            <h6>instagram</h6>
+                            <h6>PlAMINE</h6>
                         </div>
                         <div class="ticker-animation">
-                            <h6>instagram</h6>
+                            <h6>PlAMINE</h6>
                         </div>
                     </div>
                 </div> 
@@ -93,26 +64,21 @@ get_header() ?>
                     <div class="plamine__brand-content">
                         <div class="plamine__brand-content__left">
                             <div class="plamine__brand-content__left-images">
-                                <img src="<?php echo get_template_directory_uri() ?>/assets/img/cosmetiks/photo1.jpg" alt="plamine product">
-                                <img src="<?php echo get_template_directory_uri() ?>/assets/img/cosmetiks/photo2.jpg" alt="plamine product">
+                                <img src="<?php the_field('br_pl_img_1')?>" alt="plamine product">
+                                <img src="<?php the_field('br_pl_img_2')?>" alt="plamine product">
                             </div>
-                            <h4 class="title plamine__brand-content__left-title">Plamine = Plant + Mineral (Рослини + Мінерали)</h4>
+                            <h4 class="title plamine__brand-content__left-title"><?php the_field('br_pl_title_1')?></h4>
                             <p class="text plamine__brand-content__left-text">
-                                Завдяки силі природи в поєднанні з передовими технологіями,
-                                Plamine відновлює шкіру від кореня. Робить красу безстрашною
-                                перед часом.
+                                <?php the_field('br_pl_text_1')?>
                             </p>
                         </div>
                         <div class="plamine__brand-content__right">
-                            <h4 class="title plamine__brand-content__right-title">Бренд Plamine</h4>
+                            <h4 class="title plamine__brand-content__right-title"><?php the_field('br_pl_title_2')?></h4>
                             <p class="text plamine__brand-content__right-text">
-                                Бренд Plamine пропагує ідеальне поєднання рослин, мінералів і
-                                технологій для відновлення здоровоı̈ та красивоı̈ шкіри за
-                                допомогою сили природи та чистоı̈ енергіı̈. Він створює різноманітні лініı̈ продуктів для досягнення найкращого
-                                комплексного догляду з урахуванням наявності різних проблем шкіри.
+                                <?php the_field('br_pl_text_2')?>
                             </p>
                             <div class="plamine__brand-content__right-img__wrapper">
-                                <img src="<?php echo get_template_directory_uri() ?>/assets/img/cosmetiks/photo3.jpg" alt="products img">
+                                <img src="<?php the_field('br_pl_img_3')?>" alt="products img">
                             </div>
                         </div>
                     </div>
@@ -123,106 +89,42 @@ get_header() ?>
                 <div class="container products__container--plamine">
                     <div class="swiper  products__slider--plamine__cosmeticks">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="swiper__slide-content">
-                                    <div class="product__img">
-                                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/product/photo.jpg" alt="product">
-                                    </div>
-
-                                    <div class="product__content">
-                                        <p>
-                                            Plamine Essence Зволожуча сироватка 30 мл
-                                        </p>
-                                        <span>
-                                            $85
-                                        </span>
-                                    </div>
-                                    <div class="product__buttons">
-                                        <button class="second--button single--button">Детальніше</button>
-                                        <button class="button cart--button">В кошик</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="swiper__slide-content">
-                                    <div class="product__img">
-                                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/product/photo.jpg" alt="product">
-                                    </div>
-
-                                    <div class="product__content">
-                                        <p>
-                                            Plamine Essence Зволожуча сироватка 30 мл
-                                        </p>
-                                        <span>
-                                            $85
-                                        </span>
-                                    </div>
-                                    <div class="product__buttons">
-                                        <button class="second--button single--button">Детальніше</button>
-                                        <button class="button cart--button">В кошик</button>
+                        <?php
+                            $args = array(
+                                'orderby' => 'ID',
+                                'limit' => -1,
+                                'category' => 'косметика', // Replace 'your_category_slug_or_id' with the slug or ID of your category
+                            );
+                            $products = wc_get_products($args);
+                            foreach ($products as $product) { ?>
+                                <div class="swiper-slide">
+                                    <div class="swiper__slide-content">
+                                        <div class="product__img">
+                                            <?php
+                                            $image_url = wp_get_attachment_image_url($product->get_image_id(), 'full');
+                                            if ($image_url) {
+                                                echo '<img src="' . esc_url($image_url) . '" alt="' . esc_attr($product->get_name()) . '">';
+                                            } else {
+                                                echo '<img src="' . get_template_directory_uri() . '/assets/img/product/photo.jpg" alt="product">';
+                                            }
+                                            ?>
+                                        </div>
+                                        <div class="product__content">
+                                            <p>
+                                                <?php echo $product->get_name(); ?>
+                                            </p>
+                                            <span>
+                                                <?php echo $product->get_price_html(); ?>
+                                            </span>
+                                        </div>
+                                        
+                                        <div class="product__buttons">
+                                            <button class="second--button single--button" data-id="<?php echo $product->get_id(); ?>">Детальніше <img class="popup--circle" src="<?php echo get_template_directory_uri() . "/assets/img/circle.svg"; ?>" alt="product"></button>
+                                            <button class="button cart--button" data-id="<?php echo $product->get_id(); ?>">В кошик <img class="popup--circle" src="<?php echo get_template_directory_uri() . "/assets/img/circle-white.svg"; ?>" alt="product"></button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="swiper__slide-content">
-                                    <div class="product__img">
-                                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/product/photo.jpg" alt="product">
-                                    </div>
-
-                                    <div class="product__content">
-                                        <p>
-                                            Plamine Essence Зволожуча сироватка 30 мл
-                                        </p>
-                                        <span>
-                                            $85
-                                        </span>
-                                    </div>
-                                    <div class="product__buttons">
-                                        <button class="second--button single--button">Детальніше</button>
-                                        <button class="button cart--button">В кошик</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="swiper__slide-content">
-                                    <div class="product__img">
-                                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/product/photo.jpg" alt="product">
-                                    </div>
-
-                                    <div class="product__content">
-                                        <p>
-                                            Plamine Essence Зволожуча сироватка 30 мл
-                                        </p>
-                                        <span>
-                                            $85
-                                        </span>
-                                    </div>
-                                    <div class="product__buttons">
-                                        <button class="second--button single--button">Детальніше</button>
-                                        <button class="button cart--button">В кошик</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="swiper__slide-content">
-                                    <div class="product__img">
-                                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/product/photo.jpg" alt="product">
-                                    </div>
-
-                                    <div class="product__content">
-                                        <p>
-                                            Plamine Essence Зволожуча сироватка 30 мл
-                                        </p>
-                                        <span>
-                                            $85
-                                        </span>
-                                    </div>
-                                    <div class="product__buttons">
-                                        <button class="second--button single--button">Детальніше</button>
-                                        <button class="button cart--button">В кошик</button>
-                                    </div>
-                                </div>
-                            </div>
+                            <?php } ?>
                         </div>
                     </div>
                     <div class="swiper__buttons">
@@ -238,106 +140,43 @@ get_header() ?>
                 <div class="container products__container--plamine">
                     <div class="swiper products__slider--plamine__accessories">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="swiper__slide-content">
-                                    <div class="product__img">
-                                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/product/photo.jpg" alt="product">
-                                    </div>
+                        <?php
+                            $args = array(
+                                'orderby' => 'ID',
+                                'limit' => -1,
+                                'category' => 'добавки-аксесуари', // Replace 'your_category_slug_or_id' with the slug or ID of your category
+                            );
 
-                                    <div class="product__content">
-                                        <p>
-                                            Plamine Essence Зволожуча сироватка 30 мл
-                                        </p>
-                                        <span>
-                                            $85
-                                        </span>
-                                    </div>
-                                    <div class="product__buttons">
-                                        <button class="second--button single--button">Детальніше</button>
-                                        <button class="button cart--button">В кошик</button>
+                            $products = wc_get_products($args);
+                            foreach ($products as $product) { ?>
+                                <div class="swiper-slide">
+                                    <div class="swiper__slide-content">
+                                        <div class="product__img">
+                                            <?php
+                                            $image_url = wp_get_attachment_image_url($product->get_image_id(), 'full');
+                                            if ($image_url) {
+                                                echo '<img src="' . esc_url($image_url) . '" alt="' . esc_attr($product->get_name()) . '">';
+                                            } else {
+                                                echo '<img src="' . get_template_directory_uri() . '/assets/img/product/photo.jpg" alt="product">';
+                                            }
+                                            ?>
+                                        </div>
+                                        <div class="product__content">
+                                            <p>
+                                                <?php echo $product->get_name(); ?>
+                                            </p>
+                                            <span>
+                                                <?php echo $product->get_price_html(); ?>
+                                            </span>
+                                        </div>
+                                        
+                                        <div class="product__buttons">
+                                            <button class="second--button single--button" data-id="<?php echo $product->get_id(); ?>">Детальніше <img class="popup--circle" src="<?php echo get_template_directory_uri() . "/assets/img/circle.svg"; ?>" alt="product"></button>
+                                            <button class="button cart--button" data-id="<?php echo $product->get_id(); ?>">В кошик <img class="popup--circle" src="<?php echo get_template_directory_uri() . "/assets/img/circle-white.svg"; ?>" alt="product"></button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="swiper__slide-content">
-                                    <div class="product__img">
-                                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/product/photo.jpg" alt="product">
-                                    </div>
-
-                                    <div class="product__content">
-                                        <p>
-                                            Plamine Essence Зволожуча сироватка 30 мл
-                                        </p>
-                                        <span>
-                                            $85
-                                        </span>
-                                    </div>
-                                    <div class="product__buttons">
-                                        <button class="second--button single--button">Детальніше</button>
-                                        <button class="button cart--button">В кошик</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="swiper__slide-content">
-                                    <div class="product__img">
-                                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/product/photo.jpg" alt="product">
-                                    </div>
-
-                                    <div class="product__content">
-                                        <p>
-                                            Plamine Essence Зволожуча сироватка 30 мл
-                                        </p>
-                                        <span>
-                                            $85
-                                        </span>
-                                    </div>
-                                    <div class="product__buttons">
-                                        <button class="second--button single--button">Детальніше</button>
-                                        <button class="button cart--button">В кошик</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="swiper__slide-content">
-                                    <div class="product__img">
-                                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/product/photo.jpg" alt="product">
-                                    </div>
-
-                                    <div class="product__content">
-                                        <p>
-                                            Plamine Essence Зволожуча сироватка 30 мл
-                                        </p>
-                                        <span>
-                                            $85
-                                        </span>
-                                    </div>
-                                    <div class="product__buttons">
-                                        <button class="second--button single--button">Детальніше</button>
-                                        <button class="button cart--button">В кошик</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="swiper__slide-content">
-                                    <div class="product__img">
-                                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/product/photo.jpg" alt="product">
-                                    </div>
-
-                                    <div class="product__content">
-                                        <p>
-                                            Plamine Essence Зволожуча сироватка 30 мл
-                                        </p>
-                                        <span>
-                                            $85
-                                        </span>
-                                    </div>
-                                    <div class="product__buttons">
-                                        <button class="second--button single--button">Детальніше</button>
-                                        <button class="button cart--button">В кошик</button>
-                                    </div>
-                                </div>
-                            </div>
+                            <?php } ?>
                         </div>
                     </div>
                     <div class="swiper__buttons">
@@ -353,36 +192,18 @@ get_header() ?>
                 <div class="container products__container--plamine">
                     <div class="swiper products__slider--plamine__videos">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="swiper__slide-content__videos">
-                                   <img src="<?php echo get_template_directory_uri() ?>/assets/img/video/video1.jpg" alt="">
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="swiper__slide-content__videos">
-                                   <img src="<?php echo get_template_directory_uri() ?>/assets/img/video/video1.jpg" alt="">
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="swiper__slide-content__videos">
-                                   <img src="<?php echo get_template_directory_uri() ?>/assets/img/video/video1.jpg" alt="">
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="swiper__slide-content__videos">
-                                   <img src="<?php echo get_template_directory_uri() ?>/assets/img/video/video1.jpg" alt="">
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="swiper__slide-content__videos">
-                                   <img src="<?php echo get_template_directory_uri() ?>/assets/img/video/video1.jpg" alt="">
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="swiper__slide-content__videos">
-                                   <img src="<?php echo get_template_directory_uri() ?>/assets/img/video/video1.jpg" alt="">
-                                </div>
-                            </div>
+                            <?php
+                                $video_list = get_field('video_plamine');
+                                foreach ($video_list as $value) {?>
+                                    <div class="swiper-slide">
+                                        <div class="swiper__slide-content__videos">
+                                            <video width="100%" height="100%"  controls>
+                                            <source src="<?php echo $value['video']?>" type="video/mp4">
+                                            Your browser does not support the video tag.
+                                            </video>
+                                        </div>
+                                    </div>
+                                <?php } ?>
                         </div>
                     </div>
                     <div class="swiper__buttons">
@@ -393,48 +214,43 @@ get_header() ?>
                     </div>
                 </div>
             </section>
+
             <section class="plamine__company">
                 <div class="container plamine__company-container">
                     <div class="plamine__company-content">
                         <div class="plamine__company-content__left">
                             <div class="plamine__company-content__left-top">
                                 <h3 class="title plamine__company-content__left-top__title">
-                                    Atsuyuki Hirano (Атсуюкі Хірано)
+                                    <?php the_field('regal_title_1')?>
                                 </h3>
                                 <ul class="about-specifications__list">
-                                    <li>Експерт Японського товариства урології</li>
-                                    <li>Директор Японського товариства антивікової медицини</li>
-                                    <li>Сертифікований лікар Японського товариства регенеративної медицини</li>
-                                    <li>Лікар-профпатолог, сертифікований Японською медичною асоціацією здоров’я та спортивної медицини, запрошений
-                                        лектор, кафедра урології, Медичний університет префектури
-                                        Вакаяма</li>
+                                <?php
+                                $regal_list = get_field('regal_list_1');
+                                foreach ($regal_list as $value) {?>
+                                    <li><?php echo $value['text']?></li>
+                                <?php } ?>
                                 </ul>
                             </div>
                             <div class="plamine__company-content__left-img__wrapper">
-                                <img src="<?php echo get_template_directory_uri() ?>/assets/img/cosmetiks/photo5.jpg" alt="product img">
+                                <img src="<?php the_field('regal_img_1')?>" alt="product img">
                             </div>
                         </div>
                         <div class="plamine__company-content__right">
                             <div class="plamine__company-content__right-top">
                                 <div class="plamine__company-content__right-img__wrapper">
-                                    <img src="<?php echo get_template_directory_uri() ?>/assets/img/cosmetiks/photo4.jpg" alt="product img">
+                                    <img src="<?php the_field('regal_img_2')?>" alt="product img">
                                 </div>
                             </div>
                             <div class="plamine__company-content__left-right-bottom">
                                 <h3 class="title plamine__company-content__right-bottom__title">
-                                    Masayoshi Sawanobori (Масайоши Саваноборі)
+                                    <?php the_field('regal_title_2')?>
                                 </h3>
                                 <ul class="about-specifications__list">
-                                    <li>Декан медичного факультету</li>
-                                    <li>Експерт Японського товариства гематології</li>
-                                    <li>Сертифікований лікар з лікування раку в Японії</li>
-                                    <li>Директор і експерт Японської асоціації антивікової медицини</li>
-                                    <li>Американський вищий медичний коледж (ACAM), терапія Кілінга</li>
-                                    <li>Дипломований терапевт</li>
-                                    <li>Сертифікований лікар-профпатолог Японської медичної асоціації</li>
-                                    <li>Викладач, запрошений лектор кафедри гематології та онкології</li>
-                                    <li>Дипломований лікар онкологічної медицини</li>
-                                    <li>Медичної школи Токайського університету.</li>
+                                <?php
+                                $regal_list = get_field('regal_list_2');
+                                foreach ($regal_list as $value) {?>
+                                    <li><?php echo $value['text']?></li>
+                                <?php } ?>
                                 </ul>
                             </div>
                         </div>
