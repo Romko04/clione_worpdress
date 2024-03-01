@@ -19,7 +19,7 @@ get_header() ?>
                                 <div class="hero__content-left__text">
                                     <?php the_field('banner-text')?>
                                 </div>
-                                <button class="button">Усі товари</button>
+                                <button class="button button--with-border">Усі товари</button>
                             </div>
                             <h1 class="title hero__title hero__desktop">
                                 <?php the_field('banner-title')?>
@@ -136,8 +136,8 @@ get_header() ?>
                                 <?php } ?>
                             </ul>
                             <div class="goods__content-about__buttons">
-                                <button class="second--button cart--button">Замовити</button>
-                                <button class="button single--button">Детальніше</button>
+                            <button class="second--button single--button button--with-border">Детальніше</button>
+                                <button class="button   cart--button button--with-border">Замовити</button>
                             </div>
                         </div>
                     </div>
@@ -199,8 +199,8 @@ get_header() ?>
                             <?php the_field('metalt-home-text2')?>
                         </p>
                         <div class="metalt__mobile-bottom__buttons">
-                            <button class="button cart--button">Замовити</button>
-                            <button class="second--button single--button">Детальніше</button>
+                                <button class="second--button single--button button--with-border">Детальніше</button>
+                                <button class="button  cart--button">Замовити</button>
                         </div>
                     </div>
                 </div>
@@ -223,14 +223,11 @@ get_header() ?>
                                         <?php the_field('metalt-home-text2')?>
                                     </p>
                                     <div class="metalt__btn-wrapper">
-                                        <button class="button metalt__btn  cart--button">Замовити</button>
+                                        <button class="button metalt__btn  cart--button button--with-border">Замовити</button>
                                     </div>
                                 </div>
                             </div>
                             <div class="metalt__grid-content__left-bottom">
-                                <div class="metalt__grid-content__left-bottom__block">
-                                    <img src="<?php the_field('metalt-home-1-img')?>" alt="product">
-                                </div>
                                 <div class="metalt__grid-content__left-bottom__block">
                                     <img src="<?php the_field('metalt-home-2-img')?>" alt="product">
                                 </div>
@@ -505,8 +502,7 @@ get_header() ?>
                                 <?php } ?>
                             </ul>
                             <div class="goods__content-about__buttons">
-                                <button class="second--button cart--button">Замовити</button>
-                                <button class="button single--button">Детальніше</button>
+                                <button class="second--button single--button button--with-border">Детальніше</button>
                             </div>
                         </div>
                     </div>
@@ -543,7 +539,7 @@ get_header() ?>
                                     
                                     <div class="product__buttons">
                                         <button class="second--button single--button" data-id="<?php echo $product->get_id(); ?>">Детальніше <img class="popup--circle" src="<?php echo get_template_directory_uri() . "/assets/img/circle.svg"; ?>" alt="product"></button>
-                                        <button class="button cart--button" data-id="<?php echo $product->get_id(); ?>">В кошик <img class="popup--circle" src="<?php echo get_template_directory_uri() . "/assets/img/circle-white.svg"; ?>" alt="product"></button>
+                                        <button class="button cart--button button--with-border" data-id="<?php echo $product->get_id(); ?>">В кошик <img class="popup--circle" src="<?php echo get_template_directory_uri() . "/assets/img/circle-white.svg"; ?>" alt="product"></button>
                                     </div>
                                 </div>
                             </div>

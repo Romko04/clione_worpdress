@@ -1,4 +1,5 @@
 const menuBody = document.querySelector('.menu__body');
+const header = document.querySelector('header')
 
 
 const isMobileOrTablet = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
@@ -40,6 +41,16 @@ if (!isMobileOrTablet) {
 
 }
 
+window.addEventListener('scroll', () => {
+    if (window.scrollY > header.offsetHeight) {
+        document.body.style.marginTop = header.offsetHeight + 'px'
+        header.classList.add('fixed')
+    } else {
+        header.classList.remove('fixed')
+        document.body.removeAttribute('style')
+
+    }
+})
 
 
 // Анімація для горизонтальних бігучих строк
@@ -97,7 +108,7 @@ function updateOpacityVertical() {
 
 // Event listeners
 document.addEventListener('click', (e) => {
-    if (e.target.classList.contains('header__burger')) {
+    if (e.target.closest('.header__burger') || e.target.closest('.header__menu-cancel')) {
         e.preventDefault()
         toggleMenu()
     }
@@ -146,27 +157,6 @@ document.addEventListener('click', (e) => {
             }
         }
     }
-    // if (isMobileOrTablet) {
-    //     if (e.target.closest('.menu-item-has-children > a')) {
-    //         debugger
-    //         e.preventDefault()
-    //         const item = e.target.closest('.menu-item-has-children')
-    //         item.classList.toggle('active')
-    //         let menu = item.querySelector('.sub-menu');
-    //         if (menu) {
-    //             if (item.classList.contains('active')) {
-    //                 menu.style.padding = '2rem 3rem';
-    //                 menu.style.marginTop = '2rem';
-    //                 let totalHeight = menu.scrollHeight + 60
-    //                 menu.style.maxHeight = (totalHeight / 10) + 'rem';
-    //             } else {
-    //                 menu.style.padding = '0';
-    //                 menu.style.marginTop = '0';
-    //                 menu.style.maxHeight = '0';
-    //             }
-    //         }
-    //     }
-    // }
 
 })
 
@@ -176,9 +166,8 @@ function toggleMenu() {
     const btn = document.querySelector('.header__burger');
     menuBody.classList.toggle('active');
     btn.classList.toggle('active');
-    btn.classList.contains('active') ? document.body.classList.add('scroll--block') : document.body.classList.remove('scroll--block')
+    btn.classList.contains('active') ? document.body.classList.add('body--lock') : document.body.classList.remove('body--lock')
 }
-
 
 const sliders = document.querySelectorAll('.slider');
 
@@ -220,29 +209,3 @@ sliders.forEach((slider) => {
     // Додати подію touchmove на контейнер
     container.addEventListener('touchmove', handleTouchMove);
 });
-
-
-const playButton = document.querySelector('.play-button');
-const video = document.getElementById('my-video');
-
-if (playButton) {
-    playButton.addEventListener('click', function () {
-        playButton.classList.toggle('active');
-        if (video.paused) {
-            video.play();
-        } else {
-            video.pause();
-        }
-    });
-}
-
-if (video) {
-    video.addEventListener('play', function () {
-        playButton.classList.add('active');
-    });
-
-    video.addEventListener('pause', function () {
-        playButton.classList.remove('active');
-    });
-}
-

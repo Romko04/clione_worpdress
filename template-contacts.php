@@ -12,11 +12,11 @@ get_header() ?>
                             <div class="contacts__block">
                                 <div class="contacts__block-info">
                                     <img src="<?php echo get_template_directory_uri() ?>/assets/img/icons/phone.svg" alt="contacts icon">
-                                    <a href="tel:38(099)1793287">+ 38 (099) 179 32 87</a>
+                                    <a href="tel:<?php the_field('nomer_neotf', 'option'); ?>"><?php the_field('nomer_otf', 'option'); ?></a>
                                 </div>
                                 <div class="contacts__block-info">
                                     <img src="<?php echo get_template_directory_uri() ?>/assets/img/icons/location.svg" alt="contacts icon">
-                                    <span>Адреса офісу: Київ, вул. Трьохсвятительська, 3</span>
+                                    <span><?php the_field('addres', 'option'); ?></span>
                                 </div>
                             </div>
                             <div class="contacts__socials">
