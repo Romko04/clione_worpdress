@@ -3,6 +3,7 @@ const swiperElement1 = document.querySelector('.swiper--products');
 if (swiperElement1) {
     const swiper = new Swiper(swiperElement1, {
         slidesPerView: 1,
+        spaceBetween: 10,
         pagination: {
             el: '.swiper-pagination',
         },
@@ -19,18 +20,20 @@ if (swiperElement1) {
     });
 }
 
-const swiperElement2 = document.querySelector('.swiper--comparator__mobile');
+const swiperElement2 = document.querySelector('.bfaf__slider');
 if (swiperElement2) {
     const swiper2 = new Swiper(swiperElement2, {
-        slidesPerView: 1,
-        pagination: {
-            el: '.swiper-pagination',
+        slidesPerView: 2,
+        spaceBetween: 20,
+        breakpoints: {
+            1024: {
+                slidesPerView: 4.2,
+            }
         },
         navigation: {
-            nextEl: '.swiper-button-next--comparator',
-            prevEl: '.swiper-button-prev--comparator',
+            nextEl: '.swiper-button-next--bfaf',
+            prevEl: '.swiper-button-prev--bfaf',
         },
-        allowTouchMove: false,
     });
 }
 
@@ -82,6 +85,7 @@ const swiperElement6 = document.querySelector('.products__slider--plamine__cosme
 if (swiperElement6) {
     const swiper6 = new Swiper(swiperElement6, {
         slidesPerView: 1,
+        spaceBetween: 10,
         navigation: {
             nextEl: '.swiper-button-next--cosmeticks',
             prevEl: '.swiper-button-prev--cosmeticks',
@@ -101,6 +105,7 @@ const swiperElement7 = document.querySelector('.products__slider--plamine__acces
 if (swiperElement7) {
     const swiper7 = new Swiper(swiperElement7, {
         slidesPerView: 1,
+        spaceBetween: 10,
         navigation: {
             nextEl: '.swiper-button-next--accessories',
             prevEl: '.swiper-button-prev--accessories',
@@ -119,6 +124,7 @@ const swiperElement8 = document.querySelector('.products__slider--plamine__video
 if (swiperElement8) {
     const swiper8 = new Swiper(swiperElement8, {
         slidesPerView: 1,
+        spaceBetween: 10,
         navigation: {
             nextEl: '.swiper-button-next--videos',
             prevEl: '.swiper-button-prev--videos',

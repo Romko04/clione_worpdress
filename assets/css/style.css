@@ -4103,9 +4103,22 @@ display: none;
     object-fit: contain;
     border-radius: 2rem;
 }
+.bfaf__container{
+    padding-right: 0;
+}
+.bfaf__content img{
+    width: 100%;
+    height: 100%;
+}
+.goods--margin {
+    margin-top: 22rem;
+}
 
 
 @media (max-width: 1024px) {
+    .bfaf__container{
+        padding-right: 1rem;
+    }
     .header__container{
         position: relative;
     }
