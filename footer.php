@@ -176,7 +176,7 @@
                                                         </div>
                                                     </a>
                                                 </li>
-                                                <li><a href="'. home_url() .'/offer">Публічна оферта</a></li>
+                                                <li><a target="_blank" href="'. home_url() .'/offer">Публічна оферта</a></li>
                                             </ul>'
                         ) ); 
                         ?>
@@ -191,7 +191,7 @@
                         <div class="socials footer__socials">
                             <ul>
                                 <li>
-                                    <a href="<?php the_field('insta_link', 'option') ?>">
+                                    <a target="_blank" href="<?php the_field('insta_link', 'option') ?>">
                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <circle cx="12" cy="12" r="11.75" stroke="#202020" stroke-width="0.5" />
                                             <path
@@ -201,7 +201,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="<?php the_field('telega_link', 'option'); ?>">
+                                    <a target="_blank" href="<?php the_field('telega_link', 'option'); ?>">
                                         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <circle cx="12" cy="12" r="11.75" stroke="#202020" stroke-width="0.5" />
                                             <path
@@ -211,7 +211,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="<?php the_field('viber_link', 'option') ?>">
+                                    <a target="_blank" href="<?php the_field('viber_link', 'option') ?>">
                                         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <circle cx="12" cy="12" r="11.75" stroke="#202020" stroke-width="0.5" />
                                             <path
@@ -224,7 +224,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="<?php the_field('face_link', 'option') ?>">
+                                    <a target="_blank" href="<?php the_field('face_link', 'option') ?>">
                                         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <circle cx="12" cy="12" r="11.75" stroke="#202020" stroke-width="0.5" />
                                             <path
@@ -237,7 +237,7 @@
                         </div>
                     </div>
                     <div class="footer__content-bottom">
-                        <p>Дизайн та розробка сайту - <a href="https://www.instagram.com/v.karrina/">@v.karrina</a></p>
+                        <p>Дизайн та розробка сайту - <a target="_blank" href="https://www.instagram.com/v.karrina/">@v.karrina</a></p>
                         <p>© 2024. Всі права захищені</p>
                     </div>
                 </div>

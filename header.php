@@ -28,22 +28,23 @@
                 <button class="header__burger"></button>
                 <nav class="header__menu">
                 <?php
-                wp_nav_menu(array(
-                    'theme_location' => 'menu-1',
-                    'menu_class' => 'header__menu-items',
-                    'container' => 'nav',
-                    'container_class' => 'menu__body',
-                    'items_wrap' => '<div class="menu__content-top">
-                                        <span class="menu__content-top__text">Меню</span>
-                                        <img class="header__menu-cancel" src="' . get_template_directory_uri() . '/assets/img/icons/cancel2.svg" alt="cancel icon">
-                                    </div><ul id="%1$s" class="%2$s">%3$s</ul>'
-                ));
+                    wp_nav_menu(array(
+                        'theme_location' => 'menu-1',
+                        'menu_class' => 'header__menu-items',
+                        'container' => 'nav',
+                        'container_class' => 'menu__body',
+                        'items_wrap' => '<div class="menu__content-top">
+                                            <span class="menu__content-top__text">Меню</span>
+                                            <img class="header__menu-cancel" src="' . get_template_directory_uri() . '/assets/img/icons/cancel2.svg" alt="cancel icon">
+                                        </div><ul id="%1$s" class="%2$s">%3$s</ul>',
+                    ));
                 ?>
+
             </nav>
             <div class="socials">
                             <ul>
                                 <li>
-                                    <a href="<?php the_field('insta_link', 'option') ?>">
+                                    <a target="_blank" href="<?php the_field('insta_link', 'option') ?>">
                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <circle cx="12" cy="12" r="11.75" stroke="#202020" stroke-width="0.5" />
                                             <path
@@ -53,7 +54,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="<?php the_field('telega_link', 'option'); ?>">
+                                    <a target="_blank" href="<?php the_field('telega_link', 'option'); ?>">
                                         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <circle cx="12" cy="12" r="11.75" stroke="#202020" stroke-width="0.5" />
                                             <path
@@ -63,7 +64,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="<?php the_field('viber_link', 'option') ?>">
+                                    <a target="_blank" href="<?php the_field('viber_link', 'option') ?>">
                                         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <circle cx="12" cy="12" r="11.75" stroke="#202020" stroke-width="0.5" />
                                             <path
@@ -76,7 +77,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="<?php the_field('face_link', 'option') ?>">
+                                    <a target="_blank" href="<?php the_field('face_link', 'option') ?>">
                                         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <circle cx="12" cy="12" r="11.75" stroke="#202020" stroke-width="0.5" />
                                             <path

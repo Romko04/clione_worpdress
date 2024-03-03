@@ -492,7 +492,11 @@ get_header() ?>
                                 ?>
                             </ul>
                             <div class="goods__content-sale">
-                                <span class="price"><?php the_field('result_price')?></span>
+                                <?php
+                                    $product = wc_get_product(566);
+                                    $price = $product->get_price();
+                                ?>
+                                <span class="price"><?php echo $price?> ₴</span>
                                 <div class="product__quantity">
                                     <button class="quantity__btn minus">
                                         <img class="svg__minus cart__icon" src="<?php echo get_template_directory_uri() ?>/assets/img/cart/minus.svg" alt="plus icon">

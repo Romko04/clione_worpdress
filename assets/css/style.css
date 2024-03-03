@@ -4133,6 +4133,26 @@ display: none;
 }
 
 @media (max-width: 1024px) {
+    .menu-item-has-children > a {
+        padding-right: 0;
+    }
+    .menu-item-has-children > a::after {
+        display: none;
+    }
+    .menu-item-has-children::after {
+        content: '';
+        background-image: url('../img/icons/arrowHeader.svg');
+        position: absolute;
+        top: 0.6rem;
+        left: 10rem;
+        width: 1.5rem;
+        background-size: cover;
+        height: 0.9rem;
+        transition: all 0.5s ease;
+    }
+    .menu-item-has-children.active::after {
+        transform: rotate(180deg);
+    }
     .button, .second--button{
         width: 100%;
     }
