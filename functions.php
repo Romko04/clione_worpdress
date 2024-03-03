@@ -431,6 +431,45 @@ function update_cart_callback() {
     }
 }
 
+//Видаляємо всі елементи з корзини
+
+add_action('wp_ajax_clear_cart', 'clear_cart_callback');
+add_action('wp_ajax_nopriv_clear_cart', 'clear_cart_callback');
+
+function clear_cart_callback() {
+    $cartItemCount = WC()->cart->get_cart_contents_count();
+
+    // Очистка корзини WooCommerce
+    WC()->cart->empty_cart();
+
+    // Підготовка відповіді для клієнта
+    $response = array(
+        'success' => true,
+        'total' => $cartItemCount,
+    );
+
+    // Повернення відповіді у форматі JSON
+    wp_send_json_success($response);
+
+    // Обов'язково завершуємо роботу скрипта
+    wp_die();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Додавання дії для обробки екшена update_cart
 // Якщо вам потрібно дозволити неавторизованим користувачам використовувати цей екшен
 

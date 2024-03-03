@@ -69,9 +69,9 @@ get_header() ?>
                             <p>
                                 <?php the_field('partn_text4')?>
                             </p>
-                            <div class="about__content-right__button-wrapper--mobile mobile">
+                            <!-- <div class="about__content-right__button-wrapper--mobile mobile">
                                 <button class="second--button">Більше про нас</button>
-                            </div>
+                            </div> -->
                         </div>
 
                     </div>
@@ -188,17 +188,19 @@ get_header() ?>
                                 
                         </div>
                 </div>
-                    <div class="swiper swiper--cooperation">
-                        <div class="swiper-wrapper swiper-wrapper--cooperation">
-                        <?php
-                                $logoes_list = get_field('logoes_list');
-                                foreach ($logoes_list as $value) {?>
-                                <div class="swiper-slide">
-                                    <div class="cooperation__content">
-                                        <img src="<?php echo $value['logo']?>" alt="rewiev">
-                                     </div>
-                                </div>
-                            <?php } ?>
+                    <div class="container cooperation__container">
+                        <div class="swiper swiper--cooperation">
+                            <div class="swiper-wrapper swiper-wrapper--cooperation">
+                            <?php
+                                    $logoes_list = get_field('logoes_list');
+                                    foreach ($logoes_list as $value) {?>
+                                    <div class="swiper-slide">
+                                        <div class="cooperation__content">
+                                            <img src="<?php echo $value['logo']?>" alt="rewiev">
+                                        </div>
+                                    </div>
+                                <?php } ?>
+                            </div>
                         </div>
                     </div>
                     <div class="swiper__buttons cooperation__swiper-buttons">

@@ -135,7 +135,13 @@
 
                                 </div>
                                 <div class="count">
-                                    <span><?php echo $totalProducts?></span>
+                                <?php
+                                    if (!empty($totalProducts)) {
+                                ?>
+                                        <span><?php echo $totalProducts?></span>
+                                <?php
+                                    }
+                                ?>
                                 </div>
                                 <?php echo do_shortcode('[contact-form-7 id="5c87578" title=""]');?>
                             </div>
@@ -170,7 +176,7 @@
                                                         </div>
                                                     </a>
                                                 </li>
-                                                <li><a href="">доставка та оплата</a></li>
+                                                <li><a href="'. home_url() .'/offer">Публічна оферта</a></li>
                                             </ul>'
                         ) ); 
                         ?>
@@ -231,7 +237,7 @@
                         </div>
                     </div>
                     <div class="footer__content-bottom">
-                        <p>Дизайн та розробка сайту - <a href="">@v.karrina</a></p>
+                        <p>Дизайн та розробка сайту - <a href="https://www.instagram.com/v.karrina/">@v.karrina</a></p>
                         <p>© 2024. Всі права захищені</p>
                     </div>
                 </div>

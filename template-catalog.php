@@ -73,8 +73,8 @@ get_header() ?>
                             <?php } ?>
                             </ul>
                             <div class="goods__content-about__buttons">
-                                <button class="second--button single--button">Детальніше</button>
-                                <button class="button  cart--button">Замовити</button>
+                            <a href="<?php echo home_url('') ?>/clione-fit"><button class="second--button button--hover-grey">Детальніше</button></a>
+                                <button class="button  cart--button button--hover-grey " data-id="566" >Замовити<img class="popup--circle" src="<?php echo get_template_directory_uri() . "/assets/img/circle-white.svg"; ?>" alt="product"></button>
                             </div>
                         </div>
                     </div>
@@ -151,8 +151,8 @@ get_header() ?>
                             <?php } ?>
                             </ul>
                             <div class="goods__content-about__buttons">
-                                <button class="second--button single--button">Детальніше</button>
-                                <button class="button  cart--button">Замовити</button>
+                                <a href="<?php echo home_url('') ?>/meta-lt"> <button class="second--button  button--hover-grey">Детальніше</button></a>
+                                <button class="button  cart--button button--hover-grey" data-id="567">Замовити<img class="popup--circle" src="<?php echo get_template_directory_uri() . "/assets/img/circle-white.svg"; ?>" alt="product"></button>
                             </div>
                         </div>
                     </div>
@@ -226,7 +226,9 @@ get_header() ?>
                             <?php } ?>
                             </ul>
                             <div class="goods__content-about__buttons">
-                                <button class="second--button single--button">Детальніше</button>
+                                <a href="<? echo home_url('')?>/plamine">
+                                    <button class="second--button button--hover-grey">Детальніше</button>
+                                </a>
                             </div>
                         </div>
                     </div>

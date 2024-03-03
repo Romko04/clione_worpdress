@@ -126,7 +126,7 @@ get_header() ?>
                             <img src="<?php the_field('cl-big-photo') ?>" alt="clione photo">
                         </div>
                         <div class="button-wrapper">
-                            <button class="button cart--button">Замовити</button>
+                            <button class="button  cart--button " data-id="566" >Замовити<img class="popup--circle" src="<?php echo get_template_directory_uri() . "/assets/img/circle-white.svg"; ?>" alt="product"></button>
                         </div>
                     </div>
                 </div>
@@ -275,7 +275,7 @@ get_header() ?>
                     <?php the_field('link_video')?>
                 </div>
                 <div class="button-wrapper">
-                    <button class="button cart--button">Замовити</button>
+                    <button class="button  cart--button " data-id="566" >Замовити<img class="popup--circle" src="<?php echo get_template_directory_uri() . "/assets/img/circle-white.svg"; ?>" alt="product"></button>
                 </div>
             </section>
             <section class="recommend">
@@ -433,7 +433,7 @@ get_header() ?>
                     <div class="swiper-pagination swiper-pagination--characteristics swiper-pagination--custom"></div>
                 </div>
             </section>
-            <section class="goods">
+            <section class="goods goods--margin">
                 <div class="container">
                     <h2 class="title goods__title">Що ви отримаєте?</h2>
                     <div class="goods__content goods__content--result">
@@ -504,7 +504,7 @@ get_header() ?>
                                 </div>
                             </div>
                             <div class="goods__content-about__buttons">
-                                <button class="button cart--button">Замовити</button>
+                                <button class="button  cart--button button--hover-grey" data-id="566" >Замовити<img class="popup--circle" src="<?php echo get_template_directory_uri() . "/assets/img/circle-white.svg"; ?>" alt="product"></button>
                             </div>
                         </div>
                     </div>

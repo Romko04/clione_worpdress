@@ -36,9 +36,7 @@ get_header() ?>
                         endforeach; ?>
                         </ul>
                     <div class="metalt__btn-wrapper">
-                        <button class="button cart--button">
-                            Замовити
-                        </button>
+                     <button class="button  cart--button" data-id="567" >Замовити<img class="popup--circle" src="<?php echo get_template_directory_uri() . "/assets/img/circle-white.svg"; ?>" alt="product"></button>
                     </div>
                 </div>
             </section>
@@ -101,9 +99,9 @@ get_header() ?>
                                 foreach ($adv_metalt_list as $value) { ?>
                             <div class="swiper-slide">
                                         <div class="advantages__content">
-                                        <div class="advantages__list-item__img-wrapper">
-                                            <img src="<?php echo get_template_directory_uri() ?>/assets/img/icons/Star2.svg" alt="star icon">
-                                        </div>
+                                        <!-- <div class="advantages__list-item__img-wrapper">
+                                            <img src="<?php  get_template_directory_uri() ?>/assets/img/icons/Star2.svg" alt="star icon">
+                                        </div> -->
                                             <h3 class="advantages__clione-title">
                                                 <?php echo $value['title']; ?>
                                             </h3>
@@ -180,10 +178,8 @@ get_header() ?>
                             <div class="swiper-button-prev swiper-button-prev--recommend "></div>
                         </div>
                     </div>
-                    <div class="metalt__btn-wrapper">
-                        <button class="button cart--button">
-                            Замовити
-                        </button>
+                    <div style="text-align:center;" class="metalt__btn-wrapper">
+                        <button class="button  cart--button" data-id="567" >Замовити<img class="popup--circle" src="<?php echo get_template_directory_uri() . "/assets/img/circle-white.svg"; ?>" alt="product"></button>
                     </div>
                 </div>
             </section>
@@ -599,7 +595,7 @@ get_header() ?>
                     <div class="swiper-pagination swiper-pagination--characteristics swiper-pagination--custom"></div>
                 </div>
             </section>
-            <section class="goods">
+            <section class="goods goods--margin">
                 <div class="container">
                     <h2 class="title goods__title">Що ви отримаєте?</h2>
                     <div class="goods__content goods__content--result">
@@ -661,7 +657,7 @@ get_header() ?>
                                 </div>
                             </div>
                             <div class="goods__content-about__buttons">
-                                <button class="button cart--button">Замовити</button>
+                                <button class="button  cart--button button--hover-grey" data-id="567" >Замовити<img class="popup--circle" src="<?php echo get_template_directory_uri() . "/assets/img/circle-white.svg"; ?>" alt="product"></button>
                             </div>
                         </div>
                     </div>

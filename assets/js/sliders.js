@@ -11,6 +11,7 @@ if (swiperElement1) {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
         },
+        loop: true, // Добавляем этот параметр
         breakpoints: {
             1024: {
                 slidesPerView: 4.1,
@@ -30,6 +31,7 @@ if (swiperElement2) {
                 slidesPerView: 4.2,
             }
         },
+        loop: true,
         navigation: {
             nextEl: '.swiper-button-next--bfaf',
             prevEl: '.swiper-button-prev--bfaf',
@@ -64,6 +66,7 @@ if (swiperElement5) {
     const swiper5 = new Swiper(swiperElement5, {
         slidesPerView: 1,
         spaceBetween: 10,
+        loop: true, // Добавляем этот параметр
         navigation: {
             nextEl: '.swiper-button-next--reviews',
             prevEl: '.swiper-button-prev--reviews',

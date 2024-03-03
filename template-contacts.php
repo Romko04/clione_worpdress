@@ -243,7 +243,7 @@ get_header() ?>
                         </ul>
                     </div>
                 </div>
-            </section> 
+            </section>
             <section class="instagram--mobile">
                 <div class="ticker ticker--instagram">
                     <div class="ticker__wrapper">

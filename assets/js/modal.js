@@ -189,6 +189,7 @@ function addToCart(productId, btn) {
             btn.classList.remove('loaded')
             openPopup(cartPopup)
             updateCartInputHidden()
+            updateSubmitButton()
         })
         .catch(function (error) {
             console.error(error);
@@ -222,6 +223,7 @@ function removeFromCart(productkey, productElement) {
                 updateCartCount(-data.data.quantity)
                 productElement.remove()
                 updateCartInputHidden()
+                updateSubmitButton()
             }
         })
         .catch(error => {
@@ -265,6 +267,7 @@ function updateQuantityCartItem(productkey, productElement, quantity, subtotal) 
                 updateCartCount(quantityChange)
                 productElement.value = parseInt(productElement.value) + quantityChange
                 updateCartInputHidden()
+                updateSubmitButton()
                 // Тут можна додати інші дії в разі успішної відповіді, якщо потрібно
             } else {
                 throw new Error('Помилка оновлення кількості товару в корзині.');
@@ -305,7 +308,7 @@ function updateCartInputHidden() {
         let productPrice = item.querySelector('.product__info-left span').textContent.trim();
         let productQuantity = item.querySelector('.quantity__input').value;
         let productId = item.getAttribute('data-id'); // assuming the plus button has the product key as data-key attribute
-        let productTotal = item.querySelector('.product__total .woocommerce-Price-amount').textContent.trim();
+        let productTotal = item.querySelector('.product__total .woocommerce-Price-amount')?.textContent.trim();
     
         let cartItemString = `Товар: *${productName}*, айді товару: ${productId}, ціна: ${productPrice}, загальна ціна: ${productTotal}, кількість: ${productQuantity}\n\n`;
     
@@ -313,8 +316,71 @@ function updateCartInputHidden() {
     });
 
     const check = document.querySelector('.check')
-    let productsTotal = document.querySelector('.count .woocommerce-Price-amount').textContent.trim();
+    let productsTotal = document.querySelector('.count .woocommerce-Price-amount')?.textContent.trim();
     check.value = productsTotal
     document.getElementById('cart_info').value = cartInfoString;
 }
+
 updateCartInputHidden()
+document.addEventListener('wpcf7mailsent', function(event) {
+    if ('83' == event.detail.contactFormId) { // Замініть 'your-form-id' на ID вашої форми CF7
+        clearCart()
+    }
+}, false);
+
+function clearCart() {
+    cartOverlay.classList.add('active');
+    fetch('/wp-admin/admin-ajax.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({
+            action: 'clear_cart',
+        }),
+    })
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error('Network response was not ok.');
+            }
+        })
+        .then(data => {
+            if (data.success) {
+                
+                let productItems = document.querySelectorAll('.product__item');
+                productItems.forEach(function(item) {
+                    item.remove();
+                });
+                let productsTotal = document.querySelector('.count .woocommerce-Price-amount');
+                updateCartCount(-data.data.total)
+                productsTotal.remove()
+                updateSubmitButton()
+            }
+        })
+        .catch(error => {
+            // Обробка помилки
+            console.error('Error clearing cart:', error);
+        })
+        .finally(() => {
+            // Приховати плашку недоступності корзини після завершення запиту
+            cartOverlay.classList.remove('active');
+        });
+}
+
+function updateSubmitButton() {
+    let productItems = document.querySelectorAll('.product__item');
+    const submitButton = document.querySelector('#cart .button--submit');
+    
+    if (productItems.length < 1) {
+        submitButton.setAttribute('disabled', 'disabled');
+    } else {
+        submitButton.removeAttribute('disabled');
+    }
+}
+
+// Викликаємо функцію для першої перевірки при завантаженні сторінки
+updateSubmitButton();
+
+

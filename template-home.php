@@ -19,7 +19,9 @@ get_header() ?>
                                 <div class="hero__content-left__text">
                                     <?php the_field('banner-text')?>
                                 </div>
-                                <button class="button button--with-border">Усі товари</button>
+                                <a href="<?php echo home_url()?>/catalog/">
+                                    <button class="button">Усі товари</button>
+                                </a>
                             </div>
                             <h1 class="title hero__title hero__desktop">
                                 <?php the_field('banner-title')?>
@@ -84,7 +86,11 @@ get_header() ?>
                                         <div class="about__content-middle__bottom-img">
                                             <img src="<?php the_field('about-photo2') ?>" alt="women">
                                         </div>
-                                        <button class="second--button">Більше про нас</button>
+                                        <a href="<?php echo home_url()?>/partners">
+                                            <button class="second--button">
+                                            Більше про нас
+                                            </button>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -103,7 +109,11 @@ get_header() ?>
                                 <?php the_field('about-text1') ?>
                             </p>
                             <div class="about__content-right__button-wrapper--mobile mobile">
-                                <button class="second--button">Більше про нас</button>
+                            <a href="<?php echo home_url()?>/partners">
+                                            <button class="second--button">
+                                            Більше про нас
+                                            </button>
+                                        </a>
                             </div>
                         </div>
 
@@ -136,8 +146,8 @@ get_header() ?>
                                 <?php } ?>
                             </ul>
                             <div class="goods__content-about__buttons">
-                            <button class="second--button single--button button--with-border">Детальніше</button>
-                                <button class="button   cart--button button--with-border">Замовити</button>
+                            <a href="<?php echo home_url('') ?>/clione-fit"><button class="second--button button--hover-grey">Детальніше</button></a>
+                            <button class="button   cart--button button--hover-grey" data-id="566">Замовити <img class="popup--circle" src="<?php echo get_template_directory_uri() . "/assets/img/circle-white.svg"; ?>" alt="product"></button>
                             </div>
                         </div>
                     </div>
@@ -199,8 +209,8 @@ get_header() ?>
                             <?php the_field('metalt-home-text2')?>
                         </p>
                         <div class="metalt__mobile-bottom__buttons">
-                                <button class="second--button single--button button--with-border">Детальніше</button>
-                                <button class="button  cart--button">Замовити</button>
+                                <a href="<?php echo home_url('') ?>/clione-fit"><button class="second--button button--hover-grey">Детальніше</button></a>
+                                <button class="button  cart--button" data-id="567">Замовити<img class="popup--circle" src="<?php echo get_template_directory_uri() . "/assets/img/circle-white.svg"; ?>" alt="product"></button>
                         </div>
                     </div>
                 </div>
@@ -223,7 +233,7 @@ get_header() ?>
                                         <?php the_field('metalt-home-text2')?>
                                     </p>
                                     <div class="metalt__btn-wrapper">
-                                        <button class="button metalt__btn  cart--button button--with-border">Замовити</button>
+                                    <button style="width: auto;" class="button   cart--button" data-id="566">Замовити <img style="width: 2.6rem; height: 2.6rem;" class="popup--circle" src="<?php echo get_template_directory_uri() . "/assets/img/circle-white.svg"; ?>" alt="product"></button>
                                     </div>
                                 </div>
                             </div>
@@ -241,7 +251,7 @@ get_header() ?>
                                     </div>
                                     <div class="metalt__grid-content__right-left-bottom">
                                         <div class="metalt__grid-content__right-button__wrapper">
-                                            <button class="second--button single--button">Детальніше</button>
+                                            <a href="<?php echo home_url('') ?>/meta-lt"> <button class="second--button">Детальніше</button></a>
                                         </div>
                                         <div class="metalt__grid-content__right-left-bottom__img">
                                             <img src="<?php the_field('metalt-home-4-img')?>" alt="product">
@@ -335,13 +345,13 @@ get_header() ?>
                                 <?php } ?>
                             </ul>
                             <div class="goods__content-about__buttons">
-                                <button class="second--button single--button button--with-border">Детальніше</button>
+                            <a href="<?php echo home_url('') ?>/plamine"><button class="second--button  button--hover-grey">Детальніше</button></a>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
-            <section class="products__slider">
+            <section class="products__slider products__slider--home">
                 <div class="container products__container">
                     <div class="swiper swiper--products">
                         <div class="swiper-wrapper">
@@ -372,7 +382,7 @@ get_header() ?>
                                     
                                     <div class="product__buttons">
                                         <button class="second--button single--button" data-id="<?php echo $product->get_id(); ?>">Детальніше <img class="popup--circle" src="<?php echo get_template_directory_uri() . "/assets/img/circle.svg"; ?>" alt="product"></button>
-                                        <button class="button cart--button button--with-border" data-id="<?php echo $product->get_id(); ?>">В кошик <img class="popup--circle" src="<?php echo get_template_directory_uri() . "/assets/img/circle-white.svg"; ?>" alt="product"></button>
+                                        <button class="button cart--button" data-id="<?php echo $product->get_id(); ?>">В кошик <img class="popup--circle" src="<?php echo get_template_directory_uri() . "/assets/img/circle-white.svg"; ?>" alt="product"></button>
                                     </div>
                                 </div>
                             </div>
@@ -423,7 +433,7 @@ get_header() ?>
                     <div class="instagram__content">
                         <ul>
                             <li>
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/instagram/inst1.jpg" alt="product image">
+                                <img src="<?php echo get_template_directory_uri() ?>/assets/img/instagram/inst1.jpg" alt="product image">
                             </li>
                             <li>
                                 <a class="instagram__link instagram__link--text" href="">
@@ -431,27 +441,27 @@ get_header() ?>
                                 </a>
                             </li>
                             <li>
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/instagram/inst2.jpg" alt="product image">
+                                <img src="<?php echo get_template_directory_uri() ?>/assets/img/instagram/inst2.jpg" alt="product image">
                             </li>
                             <li>
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/instagram/inst3.jpg" alt="product image">
+                                <img src="<?php echo get_template_directory_uri() ?>/assets/img/instagram/inst3.jpg" alt="product image">
                             </li>
                             <li>
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/instagram/inst5.jpg" alt="product image">
+                                <img src="<?php echo get_template_directory_uri() ?>/assets/img/instagram/inst5.jpg" alt="product image">
                             </li>
                             <li>
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/instagram/inst4.jpg" alt="product image">
+                                <img src="<?php echo get_template_directory_uri() ?>/assets/img/instagram/inst4.jpg" alt="product image">
                             </li>
                             <li>
                                 <a class="instagram__link" href="">
                                     <div class="circle">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/icons/circel.svg" alt="circle words">
+                                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/icons/circel.svg" alt="circle words">
                                         <span>Підписатися</span>
                                     </div>
                                 </a>
                             </li>
                             <li>
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/instagram/inst7.jpg" alt="product image">
+                                <img src="<?php echo get_template_directory_uri() ?>/assets/img/instagram/inst7.jpg" alt="product image">
                             </li>
                         </ul>
                     </div>
@@ -494,17 +504,55 @@ get_header() ?>
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
                                 <div class="swiper__instagram-content">
-                                    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/instagram/inst1.jpg" alt="photo with instagram">
+                                    <img src="<?php echo get_template_directory_uri() ?>/assets/img/instagram/inst1.jpg" alt="photo with instagram">
                                 </div>
                             </div>
                             <div class="swiper-slide">
                                 <div class="swiper__instagram-content">
-                                    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/instagram/inst1.jpg" alt="photo with instagram">
+                                    <a class="instagram__link instagram__link--text" href="">
+                                        Підпишись, аби відчути нашу атмосферу
+                                    </a>
                                 </div>
                             </div>
                             <div class="swiper-slide">
                                 <div class="swiper__instagram-content">
-                                    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/instagram/inst1.jpg" alt="photo with instagram">
+                                    <img src="<?php echo get_template_directory_uri() ?>/assets/img/instagram/inst2.jpg" alt="photo with instagram">
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="swiper__instagram-content swiper__instagram-content--circle">
+                                    <a class="instagram__link" href="">
+                                        <div class="circle">
+                                            <img src="<?php echo get_template_directory_uri() ?>/assets/img/icons/circel.svg" alt="circle words">
+                                            <span>Підписатися</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <div class="swiper-slide">
+                                <div class="swiper__instagram-content">
+                                    <img src="<?php echo get_template_directory_uri() ?>/assets/img/instagram/inst3.jpg" alt="photo with instagram">
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="swiper__instagram-content">
+                                    <img src="<?php echo get_template_directory_uri() ?>/assets/img/instagram/inst4.jpg" alt="photo with instagram">
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="swiper__instagram-content">
+                                    <img src="<?php echo get_template_directory_uri() ?>/assets/img/instagram/inst5.jpg" alt="photo with instagram">
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="swiper__instagram-content">
+                                    <img src="<?php echo get_template_directory_uri() ?>/assets/img/instagram/inst6.jpg" alt="photo with instagram">
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="swiper__instagram-content">
+                                    <img src="<?php echo get_template_directory_uri() ?>/assets/img/instagram/inst7.jpg" alt="photo with instagram">
                                 </div>
                             </div>
                         </div>
