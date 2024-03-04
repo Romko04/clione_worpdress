@@ -197,7 +197,7 @@ get_header() ?>
                                 foreach ($video_list as $value) {?>
                                     <div class="swiper-slide">
                                         <div class="swiper__slide-content__videos">
-                                            <video width="100%" height="100%"  controls>
+                                            <video width="100%" height="100%"  controls loop="" autoplay="" playsinline="" muted="" data-bgvideo="" >
                                             <source src="<?php echo $value['video']?>" type="video/mp4">
                                             Your browser does not support the video tag.
                                             </video>

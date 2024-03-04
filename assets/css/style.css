@@ -5747,7 +5747,9 @@ color: var(--default-black);
     }
 
     .swiper__slide-content__videos {
+        text-align: center;
         height: auto;
+        width: 100%;
     }
 
     .plamine__company-content {
