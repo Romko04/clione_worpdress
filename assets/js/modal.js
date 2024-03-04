@@ -67,11 +67,11 @@ window.addEventListener('click', (e) => {
         getInfoProduct(productId, e.target);
     }
     if (e.target.closest('.cart--button')) {
-        e.preventDefault()
-
-        e.target.classList.add('loaded')
+        e.preventDefault();
+        e.target.classList.add('loaded');
         const productId = e.target.getAttribute('data-id');
-        addToCart(productId, e.target)
+        const quantity = e.target.getAttribute('data-quantity'); // Отримання значення кількості з атрибуту data-quantity
+        addToCart(productId, quantity, e.target);
     }
     if (e.target.closest('.cart')) {
         e.preventDefault()
@@ -167,13 +167,17 @@ function getInfoProduct(productId, btn) {
 
 
 //Добавляємо товар в корзину, та виводимо товари в попап
-function addToCart(productId, btn) {
+function addToCart(productId, quantity, btn) {
+    var formData = new FormData();
+    formData.append('action', 'add_to_cart');
+    formData.append('product_id', productId);
+    if(quantity) {
+        formData.append('quantity', quantity);
+    }
+
     fetch('/wp-admin/admin-ajax.php', {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: 'action=add_to_cart&product_id=' + productId
+        body: formData
     })
         .then(function (response) {
             if (!response.ok) {
@@ -183,18 +187,19 @@ function addToCart(productId, btn) {
         })
         .then(function (data) {
             var productsContainer = document.querySelector('.products');
-            updateTotalProducts(data.totalProducts)
+            updateTotalProducts(data.totalProducts);
             productsContainer.innerHTML = data.cart_content_html;
-            updateCartCount(1)
-            btn.classList.remove('loaded')
-            openPopup(cartPopup)
-            updateCartInputHidden()
-            updateSubmitButton()
+            quantity? updateCartCount(+quantity) : updateCartCount(+1)
+            btn.classList.remove('loaded');
+            openPopup(cartPopup);
+            updateCartInputHidden();
+            updateSubmitButton();
         })
         .catch(function (error) {
             console.error(error);
         });
 }
+
 
 
 // Функція для видалення товару з кошика

@@ -275,9 +275,10 @@ function add_to_cart_callback() {
     if (isset($_POST['product_id'])) {
         // Отримання ID товару з POST-запиту
         $product_id = $_POST['product_id'];
+        $quantity = isset($_POST['quantity']) ? wc_stock_amount($_POST['quantity']) : 1;
         
         // Додавання товару до кошика
-        WC()->cart->add_to_cart($product_id);
+        WC()->cart->add_to_cart($product_id, $quantity);
 
         // Отримання вмісту корзини після додавання товару
         $cart_content = '';
@@ -455,23 +456,15 @@ function clear_cart_callback() {
     wp_die();
 }
 
+//Скриваємо single page
+add_filter( 'woocommerce_register_post_type_product','hide_product_page',12,1);
+function hide_product_page($args){
+    $args["publicly_queryable"]=false;
+    $args["public"]=false;
+    return $args;
+}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Додавання дії для обробки екшена update_cart
-// Якщо вам потрібно дозволити неавторизованим користувачам використовувати цей екшен
 
 add_filter( 'upload_mimes', 'svg_upload_allow' );
 

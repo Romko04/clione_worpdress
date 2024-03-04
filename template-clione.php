@@ -497,18 +497,18 @@ get_header() ?>
                                     $price = $product->get_price();
                                 ?>
                                 <span class="price"><?php echo $price?> ₴</span>
-                                <div class="product__quantity">
-                                    <button class="quantity__btn minus">
+                                <div class="product__quantity product__quantity--page">
+                                    <button class="quantity__btn minus--page">
                                         <img class="svg__minus cart__icon" src="<?php echo get_template_directory_uri() ?>/assets/img/cart/minus.svg" alt="plus icon">
                                     </button>
                                     <input type="text" class="quantity__input" value="1">
-                                    <button class="quantity__btn plus">
+                                    <button class="quantity__btn plus--page">
                                         <img class="svg__plus cart__icon" src="<?php echo get_template_directory_uri() ?>/assets/img/cart/plus.svg" alt="minus icon">
                                     </button>
                                 </div>
                             </div>
                             <div class="goods__content-about__buttons">
-                                <button class="button  cart--button button--hover-grey" data-id="566" >Замовити<img class="popup--circle" src="<?php echo get_template_directory_uri() . "/assets/img/circle-white.svg"; ?>" alt="product"></button>
+                                <button class="button goods__single--button  cart--button button--hover-grey" data-quantity="1" data-id="566" >Замовити<img class="popup--circle" src="<?php echo get_template_directory_uri() . "/assets/img/circle-white.svg"; ?>" alt="product"></button>
                             </div>
                         </div>
                     </div>

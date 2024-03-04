@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     const menuBody = document.querySelector('.menu__body');
     const header = document.querySelector('header')
 
+    const singleButton = document.querySelector('.goods__single--button')
 
     const isMobileOrTablet = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
@@ -53,6 +54,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
         }
     })
+
+
+
 
 
     // Анімація для горизонтальних бігучих строк
@@ -159,7 +163,25 @@ document.addEventListener("DOMContentLoaded", (event) => {
             }
         }
 
+        if (e.target.closest('.plus--page')) {
+            const input = e.target.closest('.plus--page').previousElementSibling
+            updateQuantity(input, +1)
+        }
+        
+        if (e.target.closest('.minus--page')) {
+            const input = e.target.closest('.minus--page').nextElementSibling
+            if (input.value == 1) {
+                return
+            }
+            updateQuantity(input, -1)
+        }
+
     })
+
+    function updateQuantity(input, value) {
+        input.value = input.value = parseInt(input.value) + value;
+        singleButton.setAttribute('data-quantity', input.value);
+    }
 
 
 
