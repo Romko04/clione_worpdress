@@ -22,10 +22,11 @@ get_header() ?>
                             <div class="contacts__socials">
                                 <h2 class="title contacts__socials-title">соціальні мережі:</h2>
                                 <div class="contacts__socials-icons">
-                                    <a href=""><img src="<?php echo get_template_directory_uri() ?>/assets/img/icons/inst.svg" alt="socials icon"></a>
-                                    <a href=""><img src="<?php echo get_template_directory_uri() ?>/assets/img/icons/telegram.svg" alt="socials icon"></a>
-                                    <a href=""><img src="<?php echo get_template_directory_uri() ?>/assets/img/icons/viber.svg" alt="socials icon"></a>
-                                    <a href=""><img src="<?php echo get_template_directory_uri() ?>/assets/img/icons/facebook.svg" alt="socials icon"></a>
+                                    
+                                    <a href="<?php the_field('insta_link', 'option') ?>"><img src="<?php echo get_template_directory_uri() ?>/assets/img/icons/inst.svg" alt="socials icon"></a>
+                                    <a href="<?php the_field('telega_link', 'option'); ?>"><img src="<?php echo get_template_directory_uri() ?>/assets/img/icons/telegram.svg" alt="socials icon"></a>
+                                    <a href="<?php the_field('viber_link', 'option') ?>"><img src="<?php echo get_template_directory_uri() ?>/assets/img/icons/viber.svg" alt="socials icon"></a>
+                                    <a href="<?php the_field('face_link', 'option') ?>"><img src="<?php echo get_template_directory_uri() ?>/assets/img/icons/facebook.svg" alt="socials icon"></a>
                                 </div>
                             </div>
                         </div>

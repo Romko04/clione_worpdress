@@ -399,83 +399,23 @@ get_header() ?>
 
                     <div class="swiper recommend__slider--mobile-2">
                         <div class="swiper-wrapper swiper-wrapper--recommend">
+                        <?php
+                        foreach ($reshumes_list as $value) {
+                            ?>
                             <div class="swiper-slide">
                                 <div class="recommend__content recommend__content--metalt">
                                     <div class="recommend__list-item__img-wrapper">
                                         <img src="<?php echo get_template_directory_uri() ?>/assets/img/icons/Star.svg" alt="start icon">
                                     </div>
-                                    <h4 class="recommend__content--metalt__title">TF Mode (Тепловий фракційний режим)
-                                    </h4>
-                                    <p>
-                                        Ліфтінг без використання скальпеля. Локальне підвищення метаболізму шкіри. <br><br>
-                                        Випромінюює радіохвилі у формі голки. Розподіл енергії випромінювання має форму
-                                        акупунктурної голки в кожній точці
-                                        та збільшується, коли вона йде від поверхні до глибших частин шкіри, мінімізуючи
-                                        навантаження на поверхню шкіри.
-                                    </p>
+                                    <h4 class="recommend__content--metalt__title"><?php echo $value['title']?></h4>
+                                    <?php echo $value['Text']?>
                                 </div>
                             </div>
-                            <div class="swiper-slide">
-                                <div class="recommend__content recommend__content--metalt">
-                                    <div class="recommend__list-item__img-wrapper">
-                                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/icons/Star.svg" alt="start icon">
-                                    </div>
-                                    <h4 class="recommend__content--metalt__title">TF Mode (Тепловий фракційний режим)
-                                    </h4>
-                                    <p>
-                                        Пропускаючи високочастотний струм через шкіру, кровотік і лімфоток посилює метаболізм шкіри. <br><br>
-                                        Відтік крові і лімфи стає більш плавним. Надлишок води та продукти життєдіяльності легко виводяться, що ефективно при набряках. Він також сприяє основному обміну речовин і виробленню колагену, ГК і еластину, надаючи шкірі пружність і життєву силу. Має високу релаксуючу дію і регулює вегетативну нервову систему. 
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="recommend__content recommend__content--metalt">
-                                    <div class="recommend__list-item__img-wrapper">
-                                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/icons/Star.svg" alt="start icon">
-                                    </div>
-                                    <h4 class="recommend__content--metalt__title">TF Mode (Тепловий фракційний режим)
-                                    </h4>
-                                    <p>
-                                        Ліфтінг без використання скальпеля. Локальне підвищення метаболізму шкіри.
-                                        Випромінюює радіохвилі у формі голки. Розподіл енергії випромінювання має форму
-                                        акупунктурної голки в кожній точці
-                                        та збільшується, коли вона йде від поверхні до глибших частин шкіри, мінімізуючи
-                                        навантаження на поверхню шкіри.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="recommend__content recommend__content--metalt">
-                                    <div class="recommend__list-item__img-wrapper">
-                                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/icons/Star.svg" alt="start icon">
-                                    </div>
-                                    <h4 class="recommend__content--metalt__title">TF Mode (Тепловий фракційний режим)
-                                    </h4>
-                                    <p>
-                                        Ліфтінг без використання скальпеля. Локальне підвищення метаболізму шкіри.
-                                        Випромінюює радіохвилі у формі голки. Розподіл енергії випромінювання має форму
-                                        акупунктурної голки в кожній точці
-                                        та збільшується, коли вона йде від поверхні до глибших частин шкіри, мінімізуючи
-                                        навантаження на поверхню шкіри.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="recommend__content recommend__content--metalt">
-                                    <div class="recommend__list-item__img-wrapper">
-                                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/icons/Star.svg" alt="start icon">
-                                    </div>
-                                    <h4 class="recommend__content--metalt__title">TF Mode (Тепловий фракційний режим)
-                                    </h4>
-                                    <p>
-                                        Ліфтінг без використання скальпеля. Локальне підвищення метаболізму шкіри.
-                                        Випромінюює радіохвилі у формі голки. Розподіл енергії випромінювання має форму
-                                        акупунктурної голки в кожній точці
-                                        та збільшується, коли вона йде від поверхні до глибших частин шкіри, мінімізуючи
-                                        навантаження на поверхню шкіри.
-                                    </p>
-                                </div>
-                            </div>
+
+                            <?php
+                        }
+                        ?>
+                            
                         </div>
                     </div>
                     <div class="swiper__buttons recommend__swiper-buttons">
