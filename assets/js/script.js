@@ -53,6 +53,12 @@ document.addEventListener("DOMContentLoaded", (event) => {
             document.body.removeAttribute('style')
 
         }
+
+        if (window.scrollY > 2500) {
+            document.getElementById("scrollToTopBtn").style.display = "block";
+          } else {
+            document.getElementById("scrollToTopBtn").style.display = "none";
+          }
     })
 
 
@@ -109,8 +115,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         });
     }
 
-
-
+    
 
     // Event listeners
     document.addEventListener('click', (e) => {
@@ -176,6 +181,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
             updateQuantity(input, -1)
         }
 
+        if (e.target.closest('#scrollToTopBtn')) {
+            scrollToTop()
+        }
+
     })
 
     function updateQuantity(input, value) {
@@ -191,6 +200,15 @@ document.addEventListener("DOMContentLoaded", (event) => {
         btn.classList.toggle('active');
         btn.classList.contains('active') ? document.body.classList.add('body--lock') : document.body.classList.remove('body--lock')
     }
+
+
+    function scrollToTop() {
+        const scrollToTopBtn = document.documentElement;
+    
+        scrollToTopBtn.scrollIntoView({ behavior: "smooth" });
+    }
+    
+
 
 
 });

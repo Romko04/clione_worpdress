@@ -631,6 +631,23 @@ justify-content: flex-end;
     cursor: pointer;
 }
 
+#scrollToTopBtn{
+    display: none;
+    border: none;
+    position: fixed;
+    bottom: 5rem;
+    right: 5rem;
+    width: 8.25rem;
+    height: 8.15rem;
+    padding: 0;
+    z-index: 5;
+    background: transparent;
+    cursor: pointer;
+}
+#scrollToTopBtn svg{
+    width: 100%;
+    height: 100%;
+}
 
 
 
@@ -4135,7 +4152,17 @@ display: none;
     padding-right: 0;
 }
 
+
 @media (max-width: 1024px) {
+    #scrollToTopBtn{
+        width: 4rem;
+        height: 4rem;
+        right: 1rem;
+    }
+    .popup--circle {
+        width: 4rem !important;
+        right: 0;
+    }
      .swiper__buttons{
         margin-top: 2rem !important;
     }
@@ -4159,8 +4186,9 @@ display: none;
         height: 3.5rem;
     }
     .button,.second--button{
-        padding: 1.8rem;
+        padding: 1.4rem;
         line-height: normal;
+        font-size: 1.8rem;
     }
     .menu-item-has-children > a {
         padding-right: 0;
@@ -4789,7 +4817,7 @@ color: var(--default-black);
     .swiper-slide .second--button,
     .swiper-slide button {
         width: 16rem;
-        height: 5.9rem;
+        /* height: 5.9rem; */
         font-size: 1.6rem;
         display: flex;
         justify-content: center;

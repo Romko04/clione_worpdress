@@ -199,7 +199,7 @@ function get_product_info_callback() {
                 'name' => $product->get_name(),
                 'price' => $product->get_price(),
                 'short_description' => $product->get_short_description(),
-                'description' => $product->get_description(),
+                'description' => wpautop($product->get_description()),
                 'main_image' => get_the_post_thumbnail_url($product->get_id(), 'full'), // Отримати URL головного зображення
                 'additional_images' => array(), // Масив для зберігання URL додаткових зображень
 				'product_id' => $product_id,
@@ -522,3 +522,4 @@ if( function_exists('acf_add_options_page') ) {
         'redirect'      => false
     ));
 }
+
