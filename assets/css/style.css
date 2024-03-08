@@ -707,7 +707,7 @@ justify-content: flex-end;
     /* For hardware acceleration */
 }
 
-.ticker-animation h6 {
+.ticker-animation h2 {
     font-family: var(--font-family);
     font-weight: 700;
     font-size: 4.2rem;
@@ -1039,7 +1039,7 @@ justify-content: flex-end;
     flex-direction: column;
 }
 
-.metalt__grid-content__left-top__block--text span {
+.metalt__grid-content__left-top__block--text h3 {
 
     font-family: var(--font-family);
     font-weight: 400;
@@ -2406,7 +2406,7 @@ display: none;
     position: relative;
 }
 
-.advantages__clione-photo__wrapper h2 {
+.advantages__clione-photo__wrapper h1 {
     position: absolute;
     text-align: center;
     left: 0;
@@ -2718,7 +2718,7 @@ display: none;
     border-radius: 2rem;
 }
 
-.indications__list-item h6 {
+.indications__list-item h2 {
 
     font-family: var(--font-family);
     font-weight: 700;
@@ -3063,7 +3063,7 @@ display: none;
     flex-direction: column;
     gap: 3rem;
 }
-.cooperation__content-left h4{
+.cooperation__content-left h2{
     font-family: var(--font-family);
     font-weight: 700;
     font-size: 4.2rem;
@@ -3232,7 +3232,7 @@ display: none;
 /* .characteristics__container{
     padding-right: 3.1rem;
 } */
-.characteristics__list-item span {
+.characteristics__list-item h3 {
 
     font-family: var(--font-family);
     font-weight: 400;
@@ -3663,7 +3663,7 @@ display: none;
     gap: 4rem;
 }
 
-.instruction__text-content h4 {
+.instruction__text-content h2 {
     font-family: var(--font-family);
     font-weight: 700;
     font-size: 4.2rem;
@@ -3871,6 +3871,8 @@ display: none;
     gap: 6rem;
     justify-content: center;
     align-items: center;
+}
+.delivery__list-item h2{
     font-family: var(--font-family);
     font-weight: 400;
     font-size: 2.6rem;
@@ -3879,6 +3881,7 @@ display: none;
     color: #000;
 }
 
+
 .delivery__slider--mobile {
     display: none;
 }
@@ -3886,6 +3889,7 @@ display: none;
 .swiper-pagination--delivery {
     display: none;
 }
+
 
 .delivery__list-item--1 {
     grid-area: del-1;
@@ -3956,6 +3960,8 @@ display: none;
     gap: 6rem;
     justify-content: center;
     align-items: center;
+}
+.payment__list-item h2{
     font-family: var(--font-family);
     font-weight: 400;
     font-size: 2.6rem;
@@ -3963,6 +3969,7 @@ display: none;
     text-align: center;
     color: #000;
 }
+
 
 .contacts {
     margin-bottom: 22rem;
@@ -4654,7 +4661,7 @@ color: var(--default-black);
         display: none;
     }
 
-    .about__content-middle__top h3 {
+    .about__content-middle__top h2 {
         display: none;
     }
 
@@ -4830,7 +4837,7 @@ color: var(--default-black);
         display: block;
     }
 
-    .ticker-animation h6 {
+    .ticker-animation h2 {
         font-size: 2rem;
         padding: 0 !important;
     }
@@ -5333,7 +5340,7 @@ color: var(--default-black);
         border-radius: 2rem;
     }
 
-    .advantages__clione-photo__wrapper h2 {
+    .advantages__clione-photo__wrapper h1 {
         font-size: 1.6rem;
     }
 
@@ -5455,7 +5462,7 @@ color: var(--default-black);
         height: auto;
     }
 
-    .indications__list-item h6 {
+    .indications__list-item h2 {
         font-size: 2rem;
         text-align: center;
         margin-bottom: 2rem;
@@ -5506,7 +5513,7 @@ color: var(--default-black);
         display: none;
     }
 
-    .characteristics__content span {
+    .characteristics__content h3 {
         font-family: var(--font-family);
         font-weight: 400;
         font-size: 1.8rem;
@@ -5654,7 +5661,7 @@ color: var(--default-black);
         border-radius: 17.9rem 17.9rem 2rem 2rem;
     }
 
-    .instruction__text-content h4 {
+    .instruction__text-content h2 {
         font-size: 2rem;
     }
 
@@ -6120,13 +6127,15 @@ color: var(--default-black);
         gap: 2rem;
         justify-content: center;
         align-items: center;
+        background-color: var(--primary-nude);
+    }
+    .payment__content h2 {
         font-family: var(--font-family);
         font-weight: 400;
         font-size: 1.8rem;
         line-height: 100%;
         text-align: center;
         color: #000;
-        background-color: var(--primary-nude);
     }
 
     .payment__content img {
@@ -6163,6 +6172,8 @@ color: var(--default-black);
         gap: 2rem;
         justify-content: center;
         align-items: center;
+    }
+    .delivery__content h2{
         font-family: var(--font-family);
         font-weight: 400;
         font-size: 1.8rem;
@@ -6170,6 +6181,7 @@ color: var(--default-black);
         text-align: center;
         color: #000;
     }
+
 
     .delivery {
         margin-top: 6rem;
@@ -6206,7 +6218,7 @@ color: var(--default-black);
         flex-direction: column;
         gap: 3rem;
     }
-    .cooperation__content-left h4{
+    .cooperation__content-left h2{
         font-size: 2rem;
     }
     
