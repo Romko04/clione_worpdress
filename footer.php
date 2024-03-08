@@ -182,7 +182,7 @@
                                                         </div>
                                                     </a>
                                                 </li>
-                                                <li><a target="_blank" href="'. home_url() .'/offer">Публічна оферта</a></li>
+                                                <li><a target="_blank" href="' . the_field("offer__link", "option") . '">Угода користувача</a></li>
                                             </ul>'
                         ) ); 
                         ?>

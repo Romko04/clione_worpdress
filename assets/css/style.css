@@ -1457,6 +1457,10 @@ justify-content: flex-end;
     grid-template-columns: repeat(4, 1fr);
     gap: 2rem;
 }
+#sb_instagram .sbi_photo {
+    border-radius: 2rem;
+    border: .1rem solid var(--default-black);
+}
 
 .instagram__content ul li {
     display: flex;
@@ -1573,6 +1577,7 @@ justify-content: flex-end;
 }
 .popup--single-product .popup__content{
     max-width: 150rem;
+    padding: 5rem 10rem 5rem 5rem;
 }
 
 .popup__close {
@@ -4152,8 +4157,69 @@ display: none;
     padding-right: 0;
 }
 
+.instagram__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5rem;
+}
+.instagram__top .circle{
+    width: 14.3rem;
+    height: 14.3rem;
+    position: relative;
+}
+.instagram__top .text__link{
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 2.6rem;
+    max-width: 32.6rem;
+    line-height: 130%;
+    color: var(--secondary-grey-5);
+}
+
+
+.circle span{
+    font-family: var(--font-family);
+font-weight: 500;
+font-size: 1.2rem;
+line-height: 100%;
+color: var(--default-black);
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+}
+
+
+
+
+.swiper__instagram-content--circle img{
+    border: none;
+    border-radius: 0;
+}
+
+.swiper__instagram-content--circle span {
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 1.4rem;
+    line-height: 100%;
+    color: var(--default-black);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
 
 @media (max-width: 1024px) {
+    .instagram__top{
+        text-align: center;
+        font-size: 1.8rem;
+    }
+    .instagram__top{
+        justify-content: center;
+    }
     #scrollToTopBtn{
         width: 4rem;
         height: 4rem;
@@ -5031,15 +5097,14 @@ color: var(--default-black);
     }
 
     .swiper__instagram-content {
-        width: 34rem;
-        height: 33.1rem;
+        width: 100%;
         border-radius: 2rem;
+        border: 0.05rem solid var(--default-black);
     }
 
     .swiper__instagram-content img {
         height: 100%;
         width: 100%;
-        border: 0.05rem solid var(--default-black);
         border-radius: 2rem;
     }
 
@@ -5073,6 +5138,10 @@ color: var(--default-black);
     .popup__content {
         max-width: 34rem;
         padding: 2rem;
+    }
+    .popup--single-product .popup__content{
+        padding: 2rem;
+        
     }
 
     .popup__content-info span.price {
@@ -6146,26 +6215,12 @@ color: var(--default-black);
     }
     .swiper__instagram-content{
         position: relative;
-        display: flex;
+        /* display: flex;
         justify-content: center;
-        align-items: center;
-    }
-    .swiper__instagram-content--circle img{
-        border: none;
-        border-radius: 0;
+        align-items: center; */
+        height: 33rem;
     }
 
-    .swiper__instagram-content--circle span {
-        font-family: var(--font-family);
-        font-weight: 500;
-        font-size: 1.4rem;
-        line-height: 100%;
-        color: var(--default-black);
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
 
     .cart__count{
         display: none;

@@ -430,6 +430,17 @@ get_header() ?>
                     </div>
                 </div>
                 <div class="container instagram__container">
+                    <div class="instagram__top">
+                        <a class="text__link" target="_blank" href="<?php the_field('insta_link', 'option') ?>">
+                            Підпишись, аби відчути нашу атмосферу                 
+                        </a>
+                        <a class="instagram__link" target="_blank" href="<?php the_field('insta_link', 'option') ?>">
+                                    <div class="circle">
+                                        <img src="<?php echo get_template_directory_uri() ?>/assets/img/icons/circel.svg" alt="circle words">
+                                        <span>Підписатися</span>
+                                    </div>
+                        </a>
+                    </div>
                     <div class="instagram__content">
                         <ul>
                             <li>
@@ -498,6 +509,11 @@ get_header() ?>
                             <h6>instagram</h6>
                         </div>
                     </div>
+                </div>
+                <div class="instagram__top">
+                <a class="text__link" target="_blank" href="<?php the_field('insta_link', 'option') ?>">
+                            Підпишись, аби відчути нашу атмосферу                 
+                        </a>
                 </div>
                 <div class="container instagram--slider__container">
                     <div class="swiper swiper--instagram swiper--pagination">
